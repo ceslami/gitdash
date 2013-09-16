@@ -29,7 +29,7 @@
                 $pull_requests = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
 
                 if(count($pull_requests)) {
-                    echo "<h3><a href='".$repo->html_url."/pulls'>".$repo->name."</a> &middot; (".count($pull_requests).")</h3>";
+                    echo "<h3><a target='_blank' href='".$repo->html_url."/pulls'>".$repo->name."</a> &middot; (".count($pull_requests).")</h3>";
                     echo "<table>";
                         foreach($pull_requests as $pr) {
                             $pull_request = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
@@ -39,7 +39,7 @@
                             $days_ago_str = $days_ago ? $days_ago.' days ago' : '<24 hours ago';
 
                             echo "<tr>";
-                                echo "<td style='width:50%;' valign='top'><a href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
+                                echo "<td style='width:50%;' valign='top'><a target='_blank' href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
                                      "<td style='width:16%;' valign='top'>".$pull_request->user->login."</td>".
                                      "<td style='width:16%;' valign='top'>".$days_ago_str."</td>".
                                      "<td style='width:6%;' valign='top'>".$pull_request->commits."</td>".
