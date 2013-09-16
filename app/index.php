@@ -39,10 +39,12 @@
                             $days_ago_str = $days_ago ? $days_ago.' days ago' : '<24 hours ago';
 
                             echo "<tr>";
-                                echo "<td style='width:71%;' valign='top'><a href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
+                                echo "<td style='width:50%;' valign='top'><a href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
+                                     "<td style='width:16%;' valign='top'>".$pull_request->user->login."</td>".
                                      "<td style='width:16%;' valign='top'>".$days_ago_str."</td>".
-                                     "<td style='width:6.5%;' valign='top'>".$pull_request->commits."</td>".
-                                     "<td style='width:6.5%;' valign='top'>".$pull_request->comments."</td>";
+                                     "<td style='width:6%;' valign='top'>".$pull_request->commits."</td>".
+                                     "<td style='width:6%;' valign='top'>".$pull_request->changed_files."</td>".
+                                     "<td style='width:6%;' valign='top'>".$pull_request->comments."</td>";
                             echo "</tr>";
                         }
                     echo "</table>";
