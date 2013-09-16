@@ -6,6 +6,32 @@
             * {
                 font-family:Lato;
             }
+
+            .experiments {
+                float:left;width:50%;height:100%;overflow-y:scroll;font-size:14px
+            }
+            .experiments h3 {
+                margin-bottom:10px;
+                color:#888;
+            }
+            .experiments h3 a {
+                color:#333;text-decoration:none;
+            }
+            .experiments table {
+                border-spacing:0;width:100%;font-size:12px
+            }
+            .experiments table tr {}
+            .experiments table tr:hover {
+                background:#eee;
+                cursor:pointer;
+            }
+            .experiments table tr td {
+                padding:3px 0;padding-left:1.5%;
+            }
+            .experiments table tr:hover td {
+                border-color:#eee;
+            }
+
         </style>
     </head>
 

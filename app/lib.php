@@ -60,6 +60,15 @@
         return $result;
     }
 
+    function get_data($url) {
+        $url = strpos($url, "?") === false
+               ? $url."?access_token=".$_COOKIE['access_token']
+               : $url."&access_token=".$_COOKIE['access_token'];
+
+        return json_decode(curl_download($url));
+    }
+
+
     // Github API stuff
     // src: https://gist.github.com/technoweenie/419219
 

@@ -22,43 +22,35 @@
     $app->get('/app/?', function() use ($app, $auth_url) {
         $token = isset($_COOKIE['access_token']) ? $_COOKIE['access_token'] : "";
 
-        $data = curl_download('https://api.github.com/orgs/Betterment/repos?type=private&access_token='.$token);
-        $repos = json_decode($data);
+        $repos = get_data('https://api.github.com/orgs/Betterment/repos?type=private');
 
-
-        echo "<div style='float:left;width:50%;height:100%;overflow-y:scroll;font-size:14px'>";
+        echo "<div class='experiments'>";
             foreach($repos as $repo) {
-                $d = curl_download('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls?access_token='.$token);
-                $pull_requests = json_decode($d);
+                $pull_requests = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
 
                 if(count($pull_requests)) {
-                    echo "<h3 style='margin-bottom:10px'><a href='".$repo->html_url."/pulls'>".$repo->name."</a> &middot; (".count($pull_requests).")</h3>";
-
-                    echo "<table style='width:100%;font-size:12px'>";
+                    echo "<h3><a href='".$repo->html_url."/pulls'>".$repo->name."</a> &middot; (".count($pull_requests).")</h3>";
+                    echo "<table>";
                         foreach($pull_requests as $pr) {
-                            $c = curl_download('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number.'?access_token='.$token);
-                            $comments = json_decode($c);
+                            $pull_request = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
 
-                            $date_parts = explode('T', $comments->created_at);
+                            $date_parts = explode('T', $pull_request->created_at);
                             $days_ago = days_ago($date_parts[0]);
                             $days_ago_str = $days_ago ? $days_ago.' days ago' : '<24 hours ago';
 
                             echo "<tr>";
-                                echo "<td style='width:71%;' valign='top'><a href='".$pr->html_url."'>".$pr->title."</a></td>".
-                                     "<td style='width:16%;padding-left:1.5%;' valign='top'>".$days_ago_str."</td>".
-                                     "<td style='width:6.5%;padding-left:1.5%;display:inline-block;' valign='top'>".$comments->commits."</td>".
-                                     "<td style='width:6.5%;padding-left:1.5%;display:inline-block;' valign='top'>".$comments->comments."</td>";
+                                echo "<td style='width:71%;' valign='top'><a href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
+                                     "<td style='width:16%;' valign='top'>".$days_ago_str."</td>".
+                                     "<td style='width:6.5%;' valign='top'>".$pull_request->commits."</td>".
+                                     "<td style='width:6.5%;' valign='top'>".$pull_request->comments."</td>";
                             echo "</tr>";
                         }
                     echo "</table>";
-
                     echo "<hr style='opacity:.3'>";
                 }
             }
         echo "</div>";
     });
-
-
 
     $app->hook('slim.after.router', function () {
         include 'footer.php';
