@@ -82,3 +82,11 @@
             return $response['error'];
         }
     }
+
+    // Utils
+    function days_ago($timestamp) {
+        $now = time();
+        $date = strtotime($timestamp);
+        $datediff = $now - $date;
+        return floor($datediff/(60*60*24));
+    }
