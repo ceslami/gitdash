@@ -7,6 +7,7 @@
                 font-family:Lato;
             }
 
+
             ::-webkit-scrollbar {
                 width: 12px;
             }
@@ -20,8 +21,26 @@
                 -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
             }
 
+            header {
+                height:40px;
+                position:absolute;
+                top:0;
+                left:0;
+                right:0;
+                border-bottom:1px solid #e5e5e5;
+            }
+            header .inner {
+                margin:10px;
+            }
+            header .inner .logo {
+                font-weight: 300;
+                text-transform: uppercase;
+                letter-spacing: 4px;
+            }
+
             .experiments {
-                float:left;width:60%;height:95%;overflow-y:scroll;font-size:14px
+                float:left;width:60%;overflow-y:scroll;font-size:14px;
+                height:100%;
             }
             .experiments h3 {
                 margin-bottom:10px;
@@ -50,12 +69,12 @@
                 margin-top:15px;
             }
             footer {
-                position:relative;height:5%;
+                position:absolute;height:40px;
+                bottom:0;left:0;right:0;
+                border-top:1px solid #e5e5e5;
             }
             footer .inner {
-                position: absolute;
-                top: 50%;
-                margin-top: -4px;
+                margin:12px;
                 color:#aaa;
                 font-size:12px;
             }
@@ -64,3 +83,8 @@
     </head>
 
     <body>
+        <header>
+            <div class="inner">
+                <div class="logo">GitDash</div>
+            </div>
+        </header>

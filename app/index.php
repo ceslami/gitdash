@@ -29,54 +29,57 @@
 
         $repos = get_data('https://api.github.com/orgs/Betterment/repos?type=private');
 
-        echo "<div class='experiments'>";
-            foreach($repos as $repo) {
-                $pull_requests = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
+        echo "<div style='position:absolute;bottom: 50px;top: 50px;left: 10px;right: 10px;'>";
+            echo "<div class='experiments'>";
+                foreach($repos as $repo) {
+                    $pull_requests = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
 
-                if(count($pull_requests)) {
-                    echo "<h3>".
-                            "<a target='_blank' style='float:left' href='".$repo->html_url."/pulls'>".$repo->name."</a>".
-                            // "<span style='float:right'>".count($pull_requests)." open requests</span>".
-                            // "<div style='clear:both'></div>".
-                         "</h3>";
-                    echo "<table>";
-                        foreach($pull_requests as $pr) {
-                            $pull_request = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
+                    if(count($pull_requests)) {
+                        $repo_count++;
 
-                            $date_parts = explode('T', $pull_request->created_at);
-                            $days_ago = days_ago($date_parts[0]);
-                            $days_ago_str = $days_ago ? $days_ago.' days ago' : '<24 hours ago';
+                        echo "<h3>".
+                                "<a target='_blank' style='float:left' href='".$repo->html_url."/pulls'>".$repo->name."</a>".
+                                // "<span style='float:right'>".count($pull_requests)." open requests</span>".
+                                // "<div style='clear:both'></div>".
+                             "</h3>";
+                        echo "<table>";
+                            foreach($pull_requests as $pr) {
+                                $pull_request = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
 
-                            if($days_ago >= 5) {
-                                $old_posts++;
+                                $date_parts = explode('T', $pull_request->created_at);
+                                $days_ago = days_ago($date_parts[0]);
+                                $days_ago_str = $days_ago ? $days_ago.' days ago' : '<24 hours ago';
+
+                                if($days_ago >= 5) {
+                                    $old_posts++;
+                                }
+
+                                $users[] = $pull_request->user->login;
+                                $pull_requests_count++;
+
+                                echo "<tr>";
+                                    echo "<td style='width:50%;' valign='top'><a target='_blank' href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
+                                         "<td style='width:16%;' valign='top'>".$pull_request->user->login."</td>".
+                                         "<td style='width:16%;' valign='top'>".$days_ago_str."</td>".
+                                         "<td style='width:6%;' valign='top'>".$pull_request->commits."</td>".
+                                         "<td style='width:6%;' valign='top'>".$pull_request->changed_files."</td>".
+                                         "<td style='width:6%;' valign='top'>".$pull_request->comments."</td>";
+                                echo "</tr>";
                             }
-
-                            $users[] = $pull_request->user->login;
-                            $pull_requests_count++;
-                            $repo_count++;
-
-                            echo "<tr>";
-                                echo "<td style='width:50%;' valign='top'><a target='_blank' href='".$pull_request->html_url."'>".$pull_request->title."</a></td>".
-                                     "<td style='width:16%;' valign='top'>".$pull_request->user->login."</td>".
-                                     "<td style='width:16%;' valign='top'>".$days_ago_str."</td>".
-                                     "<td style='width:6%;' valign='top'>".$pull_request->commits."</td>".
-                                     "<td style='width:6%;' valign='top'>".$pull_request->changed_files."</td>".
-                                     "<td style='width:6%;' valign='top'>".$pull_request->comments."</td>";
-                            echo "</tr>";
-                        }
-                    echo "</table>";
-                    echo "<hr style='opacity:.3'>";
+                        echo "</table>";
+                        echo "<hr style='opacity:.1'>";
+                    }
                 }
-            }
-        echo "</div>";
+            echo "</div>";
 
-        $unique_users_count = count(array_unique($users));
-        echo "<div style='float:right;width:40%;'>";
-            echo "<div style='margin:20px'>";
-                echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$repo_count."</span> repositories with open requests</div>";
-                echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$pull_requests_count."</span> open pull requests</div>";
-                echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$unique_users_count."</span> devs with open requests</div>";
-                echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$old_posts."</span> pull requests >5 days old</div>";
+            $unique_users_count = count(array_unique($users));
+            echo "<div style='float:right;width:40%;height:100%'>";
+                echo "<div style='margin:20px'>";
+                    echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$repo_count."</span> repositories with open requests</div>";
+                    echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$pull_requests_count."</span> open pull requests</div>";
+                    echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$unique_users_count."</span> devs with open requests</div>";
+                    echo "<div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>".$old_posts."</span> pull requests >5 days old</div>";
+                echo "</div>";
             echo "</div>";
         echo "</div>";
     });
