@@ -60,6 +60,14 @@
         return $result;
     }
 
+    function get_json($url) {
+        $url = strpos($url, "?") === false
+               ? $url."?access_token=".$_COOKIE['access_token']
+               : $url."&access_token=".$_COOKIE['access_token'];
+
+        return curl_download($url);
+    }
+
     function get_data($url) {
         $url = strpos($url, "?") === false
                ? $url."?access_token=".$_COOKIE['access_token']

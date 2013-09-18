@@ -2,6 +2,7 @@
 
     <head>
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='/css/jquery.easy-pie-chart.css' rel='stylesheet' type='text/css'>
         <style>
             * {
                 font-family:Lato;
@@ -65,6 +66,14 @@
             .experiments table tr:hover td {
                 border-color:#eee;
             }
+
+            .experiments table tbody tr.header td {
+                padding:15px 0 0
+            }
+            .experiments table tbody:first-child tr.header td {
+                padding:0
+            }
+
             .experiments hr {
                 margin-top:15px;
             }
@@ -77,6 +86,10 @@
                 margin:12px;
                 color:#aaa;
                 font-size:12px;
+            }
+            footer .inner a {
+                color:#888;
+                text-decoration:underline;
             }
 
         </style>
