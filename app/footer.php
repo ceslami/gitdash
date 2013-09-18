@@ -137,9 +137,10 @@
                 },
 
                 onShow: function() {
+                    var freshness = parseInt(this.countStalePullRequests()*100);
                     $('.chart')
-                        .attr('data-percent', this.countStalePullRequests()*100)
-                        .text((this.countStalePullRequests()*100)+'%')
+                        .attr('data-percent', freshness)
+                        .text(freshness+'%')
                         .easyPieChart()
                 }
             });

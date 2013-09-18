@@ -105,4 +105,8 @@
                 <div class="logo">GitDash</div>
             </div>
         </header>
-        <div id='content'></div>
+        <div id='content'>
+            <div style="width:128px;height:64px;margin:-32px 0 0 -64px;position:absolute;top:50%;left:50%;">
+                <img src="http://www.chimply.com/coconut/images/516706">
+            </div>
+        </div>
