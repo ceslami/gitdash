@@ -28,18 +28,16 @@
                 <td style='width:6%;' valign='top'><%= comments %></td>
             </tr>
         </script>
-
         <script type="text/template" id="home-heads-up">
-                <div>
-                    <div style="width:50%;float:left;text-align:center">
-                        <div style="color:#666;cursor:help" title="Percentage of pull requests that are less than 4 days old">Freshness Score</div>
-                        <div class="chart" data-percent="73" style="margin:10px auto 0;font-size: 28px;font-weight: 100;">73%</div>
-                    </div>
-                    <div style="width:50%;float:left">
-
-                    </div>
+            <div>
+                <div style="width:50%;float:left;text-align:center">
+                    <div style="color:#666;cursor:help" title="Percentage of pull requests that are less than 4 days old">Freshness Score</div>
+                    <div class="chart" data-percent="73" style="margin:10px auto 0;font-size: 28px;font-weight: 100;">73%</div>
                 </div>
+                <div style="width:50%;float:left">
 
+                </div>
+            </div>
         </script>
         <script type="text/template" id="home-pull-requests">
                 <table id="experiments"></table>
@@ -87,7 +85,7 @@
 
                         return daysAgo ? daysAgo+' days ago' : '<24 hours ago';
                     }
-                },
+                }
             });
 
             var HomePullRequestsView = Marionette.CompositeView.extend({
@@ -200,14 +198,3 @@
         </script>
     </body>
 </html>
-<!--
-
-    <div style='float:right;width:40%;height:100%'>
-        <div style='margin:20px'>
-        <div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>$repo_count</span> repositories with open requests</div>
-        <div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>$pull_requests_count</span> open pull requests</div>
-        <div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>$unique_users_count</span> devs with open requests</div>
-        <div style='font-size:18px;margin:0 0 5px'><span style='display:inline-block;width:40px'>$old_posts</span> pull requests >5 days old</div>
-    </div>
-</div>
- -->

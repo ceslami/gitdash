@@ -11,7 +11,6 @@ var Router = Backbone.Router.extend({
 
   home: function(){
     var view = new HomeLayout();
-
     App.content.show(view);
   }
 });

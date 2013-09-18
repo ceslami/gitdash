@@ -2,14 +2,7 @@
 
     include 'lib.php';
 
-    $isAjax = $app->request()->isAjax();
     $auth_url = 'https://github.com/login/oauth/authorize?client_id=d9ff044e5a5eba36673b&redirect_uri=http://localhost:8888/oauth_redirect&scope=user,repo';
-
-    $app->hook('slim.before.router', function () use ($isAjax) {
-        if(!$isAjax) {
-            include 'header.php';
-        }
-    });
 
     $app->get('/?', function() use ($auth_url)  {
         echo "<a href='".$auth_url."'>Log in with Github</a>";
@@ -43,16 +36,8 @@
     });
 
     $app->get('/app/?', function() use ($app) {
-
-        echo "<div id='content' style='position:absolute;bottom: 50px;top: 50px;left: 10px;right: 10px;'>";
-
-        echo "</div>";
-    });
-
-    $app->hook('slim.after.router', function () use ($isAjax) {
-        if(!$isAjax) {
-            include 'footer.php';
-        }
+        include 'header.php';
+        include 'footer.php';
     });
 
     $app->run();

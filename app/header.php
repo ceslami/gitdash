@@ -39,6 +39,10 @@
                 letter-spacing: 4px;
             }
 
+            #content {
+                position:absolute;bottom: 50px;top: 50px;left: 10px;right: 10px;
+            }
+
             .experiments {
                 float:left;width:60%;overflow-y:scroll;font-size:14px;
                 height:100%;
@@ -101,3 +105,4 @@
                 <div class="logo">GitDash</div>
             </div>
         </header>
+        <div id='content'></div>
