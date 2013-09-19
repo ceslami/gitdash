@@ -8,6 +8,8 @@
             </div>
         </footer>
 
+        <!-- TEMPLATES -->
+
         <script type="text/template" id="home">
             <div class='experiments'></div>
             <div style='float:right;width:40%;height:100%' class="overview" id="overview"></div>
@@ -16,33 +18,42 @@
         <script type="text/template" id="pull-request">
             <% if(showRepoName) { %>
                 <tr class="header">
-                    <td style="font-size:14px;font-weight:bold"><%= head.repo.name %></td>
+                    <td></td>
+                    <td style="font-size: 12px;font-weight: 200;color: #666;text-transform: uppercase;letter-spacing: 1px;"><%= head.repo.name %></td>
                 </tr>
             <% } %>
-            <tr>
-                <td style='width:50%;' valign='top'><a target='_blank' href='<%= html_url %>'><%= title %></a></td>
-                <td style='width:16%;' valign='top'><%= user.login %></td>
-                <td style='width:16%;' valign='top'><%= days_ago(created_at) %></td>
-                <td style='width:6%;' valign='top'><%= commits %></td>
-                <td style='width:6%;' valign='top'><%= changed_files %></td>
-                <td style='width:6%;' valign='top'><%= comments %></td>
+            <tr data-href='<%= html_url %>'>
+                <td style='width:8%;' valign='top'><div style="width: 27px;height: 27px;margin:2px 0 0;overflow:hidden;border-radius:15px"><img style="width:100%" title="<%= user.login %>" src="<%= user.avatar_url %>"></div></td>
+                <td style='width:76%;' valign='top'>
+                    <span style="font-weight:400;color: #3847FC;text-decoration: underline;"><%= title %></span>
+                    <div style="margin: 2px 0 0;font-size: 11px;">
+                        <%= commits %> commits &nbsp;&middot;&nbsp; <%= changed_files %> files &nbsp;&middot;&nbsp; <%= comments %> Comments
+                    </div>
+                </td>
+                <td style='width:16%;font-style: italic;font-weight: 300;' valign='top'><%= days_ago(created_at) %></td>
             </tr>
         </script>
         <script type="text/template" id="home-heads-up">
             <div>
                 <div style="width:50%;float:left;text-align:center">
-                    <div style="color:#666;cursor:help" title="Percentage of pull requests that are less than 4 days old">Freshness Score</div>
+                    <div style="color:#666;cursor:help;font-weight:200" title="Percentage of pull requests that are less than 4 days old">Freshness Score</div>
                     <div class="chart" data-percent="73" style="margin:10px auto 0;font-size: 28px;font-weight: 100;">73%</div>
                 </div>
                 <div style="width:50%;float:left">
 
                 </div>
+                <div style="clear:both"></div>
+            </div>
+            <div style="width:100%;margin:20px 0 0">
+                <div style="color:#666;font-weight:200;text-align:center">Your Pull Requests</div>
+                <div id="user-pull-requests">
+
+                </div>
             </div>
         </script>
         <script type="text/template" id="home-pull-requests">
-                <table id="experiments"></table>
+            <table id="experiments"></table>
         </script>
-
 
         <script type="text/javascript" src="/js/vendor/jquery.min.js"></script>
         <script type="text/javascript" src="/js/vendor/jquery-ui-custom.js"></script>
@@ -66,6 +77,12 @@
 
             App.start();
 
+            var GithubUser = Backbone.Model.extend({
+                url: function() {
+                  return 'http://localhost:8888/api/user/';
+                }
+            });
+
             var PullRequests = Backbone.Collection.extend({
                 url: function() {
                   return 'http://localhost:8888/api/pulls/';
@@ -76,6 +93,10 @@
                 template: "#pull-request",
                 tagName: 'tbody',
 
+                events: {
+                    'click tr:not(.header)': 'goToGithub'
+                },
+
                 templateHelpers: {
                     days_ago: function(timestamp) {
                         var now = new Date(),
@@ -83,8 +104,15 @@
                             datediff = now.getTime() - date.getTime(),
                             daysAgo = Math.floor(datediff/(1000*60*60*24));
 
-                        return daysAgo ? daysAgo+' days ago' : '<24 hours ago';
+                        return daysAgo ? daysAgo+' day'+(daysAgo == 1 ? '' : 's')+' ago' : '<24 hours ago';
                     }
+                },
+
+                goToGithub: function(event) {
+                    var href = $(event.currentTarget).attr('data-href');
+
+                    var win = window.open(href, '_blank');
+                    win.focus();
                 }
             });
 
@@ -115,6 +143,10 @@
                 tagName: 'article',
                 className: 'song',
 
+                regions: {
+                    'userPullRequests': '#user-pull-requests'
+                },
+
                 days_ago: function(timestamp, asInt) {
                     var now = new Date(),
                         date = new Date(timestamp),
@@ -141,7 +173,10 @@
                     $('.chart')
                         .attr('data-percent', freshness)
                         .text(freshness+'%')
-                        .easyPieChart()
+                        .easyPieChart({
+                            animate: 1000
+                        });
+
                 }
             });
 
@@ -165,6 +200,24 @@
                     this.overview.show(headsUp);
                 }
             });
+
+            var Router = Backbone.Router.extend({
+              routes: {
+                "(/)": "home"
+              },
+
+              initialize: function() {
+                this.bind( "route", this.change)
+              },
+
+              change: function() {},
+
+              home: function(){
+                var view = new HomeLayout();
+                App.content.show(view);
+              }
+            });
+
         </script>
 
         <script type="text/javascript" src="/js/src/Router.js"></script>
@@ -175,15 +228,24 @@
                 $('.content').animate({opacity:1}, 300);
 
                 App.collections = {};
-                App.collections.pull_requests = new PullRequests();
+                var pull_requests = new PullRequests(),
+                    user = new GithubUser();
 
-                App.collections.pull_requests.fetch({
-                    success: function() {
-                        App.vent   = _.extend({}, Backbone.Events);
-                        App.router = new Router();
-                        Backbone.history.start()
-                    }
-                })
+                $.when(
+                    pull_requests.fetch(),
+                    user.fetch()
+                ).done(function(){
+                    _.extend(App.collections, {
+                        pull_requests: pull_requests,
+                        user: user
+                    });
+
+                    App.vent   = _.extend({}, Backbone.Events);
+                    App.router = new Router();
+                    Backbone.history.start()
+
+                    App.router.navigate('/', {trigger: true});
+                });
 
                 $(document).on("click", "a:not([data-bypass])", function(evt) {
                   var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };

@@ -57,25 +57,40 @@
                 color:#333;text-decoration:none;
             }
             .experiments table {
-                border-spacing:0;width:100%;font-size:12px
+                border-spacing:0;width:100%;font-size:12px;
+                border-collapse: collapse;
             }
             .experiments table tr {}
             .experiments table tr:hover {
                 background:#eee;
                 cursor:pointer;
             }
+            .experiments table tbody tr.header:hover {
+                background:none;
+                cursor:default;
+            }
             .experiments table tr td {
-                padding:3px 0;padding-left:1.5%;
+                padding:3px 0;
+                padding:3px 0 3px 1.5%;
+            }
+            .experiments table tr td:nth-of-type(2) {
+                padding-left:0;
             }
             .experiments table tr:hover td {
                 border-color:#eee;
             }
 
             .experiments table tbody tr.header td {
-                padding:15px 0 0
+                padding:15px 0 3px;
             }
+
+
             .experiments table tbody:first-child tr.header td {
-                padding:0
+                padding:0px 0 3px 0
+            }
+
+            .experiments table.header {
+                text-transform:uppercase;font-weight:300;
             }
 
             .experiments hr {

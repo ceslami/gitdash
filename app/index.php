@@ -15,6 +15,10 @@
         $app->redirect('/app');
     });
 
+    $app->get('/api/user/?', function() use ($app) {
+        echo get_json('https://api.github.com/user');
+    });
+
     $app->get('/api/repos/?', function() use ($app) {
         echo get_json('https://api.github.com/orgs/Betterment/repos?type=private');
     });
