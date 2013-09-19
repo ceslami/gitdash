@@ -10,7 +10,7 @@
 
 
             ::-webkit-scrollbar {
-                width: 12px;
+                width: 4px;
             }
 
             ::-webkit-scrollbar-track {
@@ -19,7 +19,7 @@
 
             ::-webkit-scrollbar-thumb {
                 border-radius: 10px;
-                -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
+                -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
             }
 
             header {
