@@ -63,7 +63,7 @@
         $response = array();
         $fields = array(
             'client_id' => 'd9ff044e5a5eba36673b',
-            'redirect_uri' => 'http://localhost:8888/oauth_redirect',
+            'redirect_uri' => $_SERVER['SERVER_NAME'].'/oauth_redirect',
             'client_secret' => '24689980b1a9841b406daba3f7084e40094fdec1',
             'code' => $code
         );
