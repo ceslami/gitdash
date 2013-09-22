@@ -67,19 +67,20 @@ header .inner .logo {
 #content {
     position:absolute;bottom: 50px;top: 10px;left: 10px;right: 10px;
 }
+#content .page-loading-status {
+    width:128px;height:64px;margin:-32px 0 0 -64px;position:absolute;top:50%;left:50%;
+}
 
 .experiments {
     float:left;width:60%;overflow-y:scroll;font-size:14px;
     height:100%;
 }
-.experiments h3 {
-    margin-bottom:10px;
-    color:#888;
-    font-size:16px;
-    margin-top:5px;
+
+.experiments .heading {
+    color:#242F38;margin: 0 0 12px;padding: 0 0 10px;border-bottom: 1px solid #e5e5e5;
 }
-.experiments h3 a {
-    color:#333;text-decoration:none;
+.experiments .heading .title {
+    font-size:18px;font-weight:200;
 }
 .experiments table {
     border-spacing:0;width:100%;font-size:12px;
@@ -98,6 +99,30 @@ header .inner .logo {
     padding:3px 0;
     padding:3px 0 5px 1.5%;
 }
+.experiments table tr td.image {
+    width:8%;position:relative;
+}
+.experiments table tr td.image .image-wrap {
+    width:30px;height:30px;margin:2px 0 0;position:relative;
+}
+.experiments table tr td.image .image-wrap .circle {
+    width: 30px;height: 30px;overflow:hidden;border-radius:15px;
+}
+.experiments table tr td.image .image-wrap .circle img {
+    width:100%;
+}
+.experiments table tr td.meta {
+    width:76%;font-size: 12px;
+}
+.experiments table tr td.meta .title {
+    font-weight:400;color:#769AB8;text-decoration: underline;
+}
+.experiments table tr td.meta .stats {
+    margin: 3px 0 0;color:#666
+}
+.experiments table tr td.age {
+    width:16%;color: #666;font-weight: 300;text-align:right;position:relative
+}
 .experiments table tr td:nth-of-type(2) {
     padding-left:0;
 }
@@ -107,9 +132,13 @@ header .inner .logo {
 .experiments table tr:hover td {
     border-color:#eee;
 }
-
 .experiments table tbody tr.header td {
     padding:20px 0 3px;
+    color:#3E5161;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .experiments table tbody:first-child tr.header td {
@@ -123,8 +152,37 @@ header .inner .logo {
 .experiments hr {
     margin-top:15px;
 }
+.overview {
+    float:right;width:40%;height:100%
+}
+.overview .row {
+    margin:40px 0 0
+}
+.overview .row:first-child {
+    margin:0;
+}
+.overview .row .col-2 {
+    width:50%;float:left;text-align:center;
+}
+.overview .row .col-2 .title {
+    color:#666;cursor:help;font-weight:200
+}
+.overview .row .col-2 .chart {
+    margin:10px auto 0;font-size: 28px;font-weight: 100;
+}
+.overview .row .col-2 .number {
+    font-size: 85px;margin: 13px 0 0;font-weight: 100;
+}
+
 #settings {
     margin:20px;
+}
+#settings .header {
+    font-size:16px;
+    font-weight:200;
+    margin:0 0 12px;
+    padding:0 0 12px;
+    border-bottom:1px solid #e5e5e5
 }
 #settings form.settings {
 
@@ -139,6 +197,13 @@ header .inner .logo {
     float:left;
     width:20%;
     min-width:200px;
+    margin:0 20px 0 0;
+}
+#settings form.settings fieldset label .title {
+    margin:9px 0 0;font-size:14px;
+}
+#settings form.settings fieldset label .description {
+    font-size:12px;margin:10px 15px 0 0;color:#666;
 }
 #settings form.settings fieldset input {
     float:left;
@@ -146,9 +211,13 @@ header .inner .logo {
     padding:5px 8px;
     border:1px solid #c5c5c5;
     border-radius:2px;
+    font-size:14px
 }
 #settings form.settings fieldset input[type=number] {
     width:60px;
+}
+#settings form.settings fieldset .days {
+    display:inline-block;margin:8px 0 0 10px;font-size:14px;
 }
 #settings button.save,
 #settings button.save:focus {
@@ -179,6 +248,12 @@ header .inner .logo {
 #settings button.save[disabled] {
     cursor:default;
     opacity:.5;
+}
+#settings .saved-successfully {
+    display:none;margin:5px;font-size:12px;
+}
+#settings .saved-successfully .icon-ok {
+    color:#37C737;
 }
 footer {
     position:absolute;height:40px;
@@ -226,7 +301,9 @@ footer .inner .pages li .icon {
     margin: 13px 0 0;
     display: block;
     font-size: 16px;
-
+}
+footer .inner .meta-data {
+    float:right
 }
 
 .badge {
