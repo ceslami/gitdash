@@ -2,7 +2,8 @@ var Marionette = Backbone.Marionette,
     App = new Marionette.Application();
 
 App.addRegions({
-    'content': '#content'
+    'content': '#content',
+    'footer': '.footer'
 });
 
 $(document).ajaxStart(function() {

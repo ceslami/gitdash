@@ -24,8 +24,13 @@ var PullRequests = Backbone.Collection.extend({
 
     getReadyToMerge: function(phrase) {
         return _.filter(this.models, function(el) {
-            console.log(el.hasApproval('lgtm'))
-            return el.hasApproval('lgtm');
+            return el.hasApproval();
+        });
+    },
+
+    getUncommented: function() {
+        return _.filter(this.models, function(el) {
+            return el.isUncommented();
         });
     }
 });

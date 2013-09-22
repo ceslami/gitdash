@@ -26,7 +26,8 @@ var HomeHeadsUpView = Marionette.ItemView.extend({
                 animate: 1000
             });
 
-        $('.user-pull-requests').text(this.collection.getPullRequestsFrom('ceslami').length);
-        $('.ready-to-merge').text(this.collection.getReadyToMerge('lgtm').length);
+        $('.user-pull-requests').html(this.collection.getPullRequestsFrom('ceslami').length ? this.collection.getPullRequestsFrom('ceslami').length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
+        $('.ready-to-merge').text(this.collection.getReadyToMerge().length);
+        $('.uncommented').text(this.collection.getUncommented().length);
     }
 });

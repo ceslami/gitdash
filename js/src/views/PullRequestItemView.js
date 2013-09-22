@@ -7,28 +7,35 @@ var PullRequestItemView = Marionette.ItemView.extend({
     },
 
     templateHelpers: {
-        days_ago: function(timestamp) {
+        days_ago: function(asInt) {
             var now = new Date(),
                 date = new Date(this.created_at),
                 datediff = now.getTime() - date.getTime(),
                 daysAgo = Math.floor(datediff/(1000*60*60*24));
 
+            if(asInt) return daysAgo;
             return daysAgo ? daysAgo+' day'+(daysAgo == 1 ? '' : 's')+' ago' : '<24 hours ago';
         },
-        has_approval: function(phrase) {
+        has_approval: function() {
             var approvals = _.filter(this.comments_list, function(el) {
-                return el.body.indexOf(phrase) > -1;
+                var words = App.settings.get('approval_words').split(','),
+                    contains = 0;
+
+                _.each(words, function(word, i) {
+                    contains += el.body.indexOf(word) > -1 ? 1 : 0
+                })
+                return contains;
             });
 
             return approvals.length > 0;
         },
-        has_approval_badge: function(phrase) {
-            if(this.has_approval(phrase)) {
+        has_approval_badge: function() {
+            if(this.has_approval()) {
                 return this.print_badge();
             }
         },
         is_off_master: function() {
-            return this.base.repo.master_branch == 'master';
+            return this.base.ref == 'master';
         },
         is_off_master_badge: function() {
             if(this.is_off_master()) {
@@ -38,7 +45,22 @@ var PullRequestItemView = Marionette.ItemView.extend({
                         text: 'white-text'
                     },
                     title: 'Branched off of master',
-                    text: 'Master'
+                    text: '<span class="icon-code-fork" style="font-weight: 900;"></span> Master'
+                });
+            }
+        },
+        is_new: function() {
+            return this.comments < 1;
+        },
+        is_new_badge: function() {
+            if(this.is_new()) {
+                return this.print_badge({
+                    style: {
+                        background: 'green',
+                        text: 'white-text'
+                    },
+                    title: 'Has not been commented on yet',
+                    text: 'NEW'
                 });
             }
         },
@@ -49,7 +71,7 @@ var PullRequestItemView = Marionette.ItemView.extend({
                         text: 'white-text'
                     },
                     title: 'Ready to merge',
-                    text: 'LGTM'
+                    text: 'SHIP IT'
                 },
                 options = _.extend(defaults, options);
 
@@ -58,13 +80,9 @@ var PullRequestItemView = Marionette.ItemView.extend({
     },
 
     goToGithub: function(event) {
-        var href = $(event.currentTarget).attr('data-href');
+        var href = $(event.currentTarget).attr('data-href'),
+            win = window.open(href, '_blank');
 
-        var win = window.open(href, '_blank');
         win.focus();
-    },
-
-    initialize:function(){
-        console.log(this.model)
     }
 });

@@ -3,6 +3,7 @@
     <head>
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
         <link href='/css/jquery.easy-pie-chart.css' rel='stylesheet' type='text/css'>
+        <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
         <style>
             * {
                 font-family:Lato;
@@ -26,6 +27,7 @@
             }
 
             header {
+                display:none;
                 height:40px;
                 position:absolute;
                 top:0;
@@ -42,17 +44,35 @@
                 letter-spacing: 4px;
                 float:left;
             }
-            header .inner .loading-status {
+            .loading-status {
                 width:30px;
                 height:15px;
-                position: relative;
-                float: left;
-                margin: 2px 0 0 10px;
+                margin:13px 0 0 10px;
+                display:inline-block;
+            }
+
+            .sidebar {
                 display:none;
+                position:absolute;
+                top:0;
+                left:0;
+                bottom:40px;
+                width:50px;
+                border-right:1px solid #e5e5e5;
+            }
+            .sidebar ul {
+                list-style:none;
+                margin: 10px 0 0;
+                padding: 0;
+                text-align: center;
+            }
+            .sidebar ul li {
+                margin: 0 0 10px;
+                display:block;
             }
 
             #content {
-                position:absolute;bottom: 50px;top: 50px;left: 10px;right: 10px;
+                position:absolute;bottom: 50px;top: 10px;left: 10px;right: 10px;
             }
 
             .experiments {
@@ -83,7 +103,7 @@
             }
             .experiments table tr td {
                 padding:3px 0;
-                padding:3px 0 3px 1.5%;
+                padding:3px 0 5px 1.5%;
             }
             .experiments table tr td:nth-of-type(2) {
                 padding-left:0;
@@ -110,6 +130,30 @@
             .experiments hr {
                 margin-top:15px;
             }
+            #settings {
+
+            }
+            #settings form.settings {
+
+            }
+            #settings form.settings fieldset {
+                display:block;
+                margin:0 0 20px;
+                padding:0;
+                border:none;
+            }
+            #settings form.settings fieldset label {
+                float:left;
+                width:20%;
+                min-width:200px;
+            }
+            #settings form.settings fieldset input {
+                float:left;
+                width:200px;
+                padding:5px 8px;
+                border:1px solid #c5c5c5;
+                border-radius:2px;
+            }
             footer {
                 position:absolute;height:40px;
                 bottom:0;left:0;right:0;
@@ -124,6 +168,36 @@
                 color:#888;
                 text-decoration:underline;
             }
+            footer .inner .pages {
+                float:left;
+                list-style:none;
+                margin: -13px 0 0;
+                padding:0;
+            }
+            footer .inner .pages li {
+                display:inline-block;
+                margin: 0;
+                width: 40px;
+                text-align: center;
+                height:41px;
+                -webkit-transition: background 0.3s ease, color 0.3s ease;
+                -moz-transition: background 0.3s ease, color 0.3s ease;
+                -o-transition: background 0.3s ease, color 0.3s ease;
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+            footer .inner .pages li:hover,
+            footer .inner .pages li.active {
+                background:#4bf;
+                color:#fff;
+                cursor:pointer;
+            }
+            footer .inner .pages li .icon {
+                vertical-align: 19px;
+                margin: 13px 0 0;
+                display: block;
+                font-size: 16px;
+
+            }
 
             .badge {
                 display:inline-block;
@@ -134,14 +208,15 @@
                 margin:0 0 0 5px;
                 text-transform:uppercase;
             }
-
             .badge.blue {
                 background:#4bf;
             }
             .badge.red {
                 background:#f00;
             }
-
+            .badge.green {
+                background:#37C737
+            }
             .badge.white-text {
                 color:#fff;
             }
@@ -158,6 +233,12 @@
                 </div>
             </div>
         </header>
+        <div class="sidebar">
+            <ul class="pages">
+                <li><span class="icon-home"></span></li>
+                <li><span class="icon-cogs"></span></li>
+            </ul>
+        </div>
         <div id='content'>
             <div style="width:128px;height:64px;margin:-32px 0 0 -64px;position:absolute;top:50%;left:50%;">
                 <img src="http://www.chimply.com/coconut/images/516706">
