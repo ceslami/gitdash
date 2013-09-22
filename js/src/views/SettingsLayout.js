@@ -21,15 +21,6 @@ var SettingsLayout = Marionette.ItemView.extend({
         }
     },
 
-    checkForChange: function(e) {
-
-    },
-
-    handleFormEntry: function(e) {
-        this.restrictNumeric(e);
-        this.checkForChange()
-    },
-
     saveSettings: function(e) {
         App.settings.set({
             approval_words: $('input.approval-words').val(),
