@@ -18,12 +18,14 @@ var HomeHeadsUpView = Marionette.ItemView.extend({
     },
 
     onShow: function() {
-        var freshness = parseInt(this.collection.stalePullRequests()*100);
+        var freshness = parseInt(this.collection.stalePullRequests()*100),
+            color = freshness == 100 ? '#37C737' : '#ef1e25';
         $('.chart')
             .attr('data-percent', freshness)
             .text(freshness+'%')
             .easyPieChart({
-                animate: 1000
+                animate: 1000,
+                barColor: color
             });
 
         $('.user-pull-requests').html(this.collection.getPullRequestsFrom('ceslami').length ? this.collection.getPullRequestsFrom('ceslami').length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
