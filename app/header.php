@@ -8,7 +8,6 @@
                 font-family:Lato;
             }
 
-
             ::-webkit-scrollbar {
                 width: 4px;
             }
@@ -20,6 +19,10 @@
             ::-webkit-scrollbar-thumb {
                 border-radius: 10px;
                 -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+            }
+
+            a {
+
             }
 
             header {
@@ -37,6 +40,15 @@
                 font-weight: 300;
                 text-transform: uppercase;
                 letter-spacing: 4px;
+                float:left;
+            }
+            header .inner .loading-status {
+                width:30px;
+                height:15px;
+                position: relative;
+                float: left;
+                margin: 2px 0 0 10px;
+                display:none;
             }
 
             #content {
@@ -62,7 +74,7 @@
             }
             .experiments table tr {}
             .experiments table tr:hover {
-                background:#eee;
+                background:#fafafa;
                 cursor:pointer;
             }
             .experiments table tbody tr.header:hover {
@@ -76,14 +88,16 @@
             .experiments table tr td:nth-of-type(2) {
                 padding-left:0;
             }
+            .experiments table tr td:last-child {
+                 padding:3px 3px 0 0;
+            }
             .experiments table tr:hover td {
                 border-color:#eee;
             }
 
             .experiments table tbody tr.header td {
-                padding:15px 0 3px;
+                padding:20px 0 3px;
             }
-
 
             .experiments table tbody:first-child tr.header td {
                 padding:0px 0 3px 0
@@ -111,6 +125,27 @@
                 text-decoration:underline;
             }
 
+            .badge {
+                display:inline-block;
+                padding:2px 4px;
+                font-weight:400;
+                border-radius:3px;
+                font-size:8px;
+                margin:0 0 0 5px;
+                text-transform:uppercase;
+            }
+
+            .badge.blue {
+                background:#4bf;
+            }
+            .badge.red {
+                background:#f00;
+            }
+
+            .badge.white-text {
+                color:#fff;
+            }
+
         </style>
     </head>
 
@@ -118,6 +153,9 @@
         <header>
             <div class="inner">
                 <div class="logo">GitDash</div>
+                <div class="loading-status">
+                    <img style="width:100%" src="http://www.chimply.com/coconut/images/516706">
+                </div>
             </div>
         </header>
         <div id='content'>

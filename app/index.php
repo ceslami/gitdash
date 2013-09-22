@@ -29,9 +29,12 @@
 
         foreach($repos as $repo) {
             $pulls = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
+            echo count($pulls);
             if(count($pulls)) {
                 foreach($pulls as $pr) {
-                    $pull_requests[] = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
+                    $pr_data = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
+                    $pr_data->comments_list = get_data($pr->comments_url);
+                    $pull_requests[] = $pr_data;
                 }
             }
         }
