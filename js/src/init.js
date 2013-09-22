@@ -15,12 +15,8 @@ $(document).ready(function() {
         });
 
         App.vent   = _.extend({}, Backbone.Events);
+        App.settings = new Settings();
         App.router = new Router();
-
-        App.settings = new Backbone.Model({
-            approval_words: localStorage.getItem('settings.approval_words') ? localStorage.getItem('settings.approval_words') : null,
-            freshness_threshold: localStorage.getItem('settings.freshness_threshold') ? localStorage.getItem('settings.freshness_threshold') : null
-        });
         Backbone.history.start();
     });
 

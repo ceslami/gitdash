@@ -13,10 +13,21 @@ var SettingsLayout = Marionette.ItemView.extend({
         for (i = 48; i < 58; i++) {
             a.push(i);
         }
+        a.push(8); // backspace
+        a.push(46); // delete
 
         if (!(a.indexOf(k)>=0)) {
             e.preventDefault();
         }
+    },
+
+    checkForChange: function(e) {
+
+    },
+
+    handleFormEntry: function(e) {
+        this.restrictNumeric(e);
+        this.checkForChange()
     },
 
     saveSettings: function(e) {
@@ -30,5 +41,7 @@ var SettingsLayout = Marionette.ItemView.extend({
                 localStorage.setItem('settings.'+key, App.settings.attributes[key]);
             }
         }
+
+        $('.saved-successfully').fadeIn(200).delay(1500).fadeOut(200)
     }
 });

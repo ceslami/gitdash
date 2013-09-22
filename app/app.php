@@ -1,6 +1,7 @@
 <?php
 
-    include 'lib.php';
+    include 'src/init.php';
+    include 'src/lib.php';
 
     $auth_url = 'https://github.com/login/oauth/authorize?client_id=d9ff044e5a5eba36673b&redirect_uri=http://localhost:8888/oauth_redirect&scope=user,repo';
 
@@ -29,7 +30,6 @@
 
         foreach($repos as $repo) {
             $pulls = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
-            echo count($pulls);
             if(count($pulls)) {
                 foreach($pulls as $pr) {
                     $pr_data = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
@@ -43,8 +43,7 @@
     });
 
     $app->get('/app/?', function() use ($app) {
-        include 'header.php';
-        include 'footer.php';
+        include 'templates/index.php';
     });
 
     $app->run();

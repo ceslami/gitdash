@@ -22,7 +22,7 @@ var PullRequestItemView = Marionette.ItemView.extend({
                     contains = 0;
 
                 _.each(words, function(word, i) {
-                    contains += el.body.indexOf(word) > -1 ? 1 : 0
+                    contains += el.body.indexOf(word.trim()) > -1 ? 1 : 0
                 })
                 return contains;
             });

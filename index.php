@@ -1,3 +1,3 @@
 <?php
 
-include 'app/index.php';
+include 'app/app.php';

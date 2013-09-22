@@ -20,6 +20,7 @@ var HomeHeadsUpView = Marionette.ItemView.extend({
     onShow: function() {
         var freshness = parseInt(this.collection.stalePullRequests()*100),
             color = freshness == 100 ? '#37C737' : '#ef1e25';
+
         $('.chart')
             .attr('data-percent', freshness)
             .text(freshness+'%')
@@ -27,9 +28,8 @@ var HomeHeadsUpView = Marionette.ItemView.extend({
                 animate: 1000,
                 barColor: color
             });
-
         $('.user-pull-requests').html(this.collection.getPullRequestsFrom('ceslami').length ? this.collection.getPullRequestsFrom('ceslami').length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
-        $('.ready-to-merge').text(this.collection.getReadyToMerge().length);
-        $('.uncommented').text(this.collection.getUncommented().length);
+        $('.ready-to-merge').html(this.collection.getReadyToMerge().length ? this.collection.getReadyToMerge().length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
+        $('.uncommented').html(this.collection.getUncommented().length ? this.collection.getUncommented().length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
     }
 });
