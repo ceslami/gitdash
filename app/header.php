@@ -154,6 +154,31 @@
                 border:1px solid #c5c5c5;
                 border-radius:2px;
             }
+            #settings form.settings fieldset input[type=number] {
+                width:60px;
+            }
+            #settings button.save,
+            #settings button.save:focus {
+                background: #4bf;
+                padding: 10px 15px;
+                border: none;
+                border-radius: 4px;
+                color: #fff;
+                font-size: 16px;
+                font-weight: 500;
+                letter-spacing: 0px;
+                margin:10px 0 0;
+                cursor:pointer;
+                 outline:none;
+            }
+            #settings button.save:hover {
+                background:#5EC0F8;
+            }
+            #settings button.save:active {
+                box-shadow: inset 0 2px 0 #2A79A7;
+                background: #349CD8;
+
+            }
             footer {
                 position:absolute;height:40px;
                 bottom:0;left:0;right:0;

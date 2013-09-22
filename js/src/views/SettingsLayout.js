@@ -21,7 +21,8 @@ var SettingsLayout = Marionette.ItemView.extend({
 
     saveSettings: function(e) {
         App.settings.set({
-            approval_words: $('input.approval-words').val()
+            approval_words: $('input.approval-words').val(),
+            freshness_threshold: $('input.freshness-threshold').val()
         });
 
         for(key in App.settings.attributes) {

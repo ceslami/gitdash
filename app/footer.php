@@ -112,12 +112,18 @@
                     </fieldset>
                     <fieldset>
                         <label>
-                            <div style="margin:5px 0 0;font-size:14px">Freshness Score Threshold:</div>
+                            <div style="margin:5px 0 0;font-size:14px" >Freshness Score Threshold:</div>
+                            <div style="font-size:12px;margin:5px 15px 0 0;color:#666">
+                                The calculation of the Freshness Score depends on
+                                how old pull requests are. By default, we designate
+                                a 3 day old pull requests as stale. Depending on your
+                                code review process, you may want to adjust this.
+                            </div>
                         </label>
-                        <input type="number" min="1" max="10" class="freshness-threshold"> days
+                        <input type="number" min="1" max="10" class="freshness-threshold" value="<%= freshness_threshold %>"> <span style="display:inline-block;margin:5px 0 0 10px;font-size:14px">days</span>
                     </fieldset>
                 </form>
-                <button class="save">Save</button>
+                <button class="save">Save Settings</button>
             </div>
         </script>
 

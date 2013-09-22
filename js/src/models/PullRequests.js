@@ -8,7 +8,7 @@ var PullRequests = Backbone.Collection.extend({
     stalePullRequests: function() {
         var self = this,
             stale_pull_requests = _.reduce(this.models, function(memo, obj){
-                var num = obj.days_ago(true) > 3 ? 1 : 0;
+                var num = obj.days_ago(true) > App.settings.get('freshness_threshold') ? 1 : 0;
                 return memo + num;
             }, 0),
             total_pull_requests = this.models.length;
