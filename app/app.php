@@ -5,7 +5,10 @@
 
     $auth_url = 'https://github.com/login/oauth/authorize?client_id=d9ff044e5a5eba36673b&redirect_uri=http://localhost:8888/oauth_redirect&scope=user,repo';
 
-    $app->get('/?', function() use ($auth_url)  {
+    $app->get('/?', function() use ($auth_url, $app)  {
+        if(isset($_COOKIE['access_token'])) {
+            $app->redirect('/app');
+        }
         echo "<a href='".$auth_url."'>Log in with Github</a>";
     });
 
