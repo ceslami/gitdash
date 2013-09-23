@@ -62,9 +62,9 @@
     function get_access_token($code) {
         $response = array();
         $fields = array(
-            'client_id' => 'd9ff044e5a5eba36673b',
-            'redirect_uri' => $_SERVER['SERVER_NAME'].'/oauth_redirect',
-            'client_secret' => '24689980b1a9841b406daba3f7084e40094fdec1',
+            'client_id' => $config['client_id'],
+            'redirect_uri' => $config['callback_url'],
+            'client_secret' => $config['client_secret'],
             'code' => $code
         );
 

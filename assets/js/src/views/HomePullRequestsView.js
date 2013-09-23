@@ -6,7 +6,7 @@ var HomePullRequestsView = Marionette.CompositeView.extend({
     itemView: PullRequestItemView,
     itemViewContainer: '#experiments',
 
-    initialize: function() {
+    onBeforeRender: function() {
         var self = this;
 
         if(this.collection !== undefined) {
@@ -17,5 +17,7 @@ var HomePullRequestsView = Marionette.CompositeView.extend({
                 self.collection.models[i].set('showRepoName', isFirstInRepo || !i);
             })
         }
+
+        console.log(self.collection)
     }
 });

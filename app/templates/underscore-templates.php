@@ -70,6 +70,9 @@
         </div>
         <div style="clear:both"></div>
     </div>
+    <div class="row commit-history">
+
+    </div>
 </script>
 <script type="text/template" id="home-pull-requests">
     <div class="heading">

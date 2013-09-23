@@ -1,9 +1,9 @@
 <?php
-
+    include 'src/config.php';
     include 'src/init.php';
     include 'src/lib.php';
 
-    $auth_url = 'https://github.com/login/oauth/authorize?client_id=d9ff044e5a5eba36673b&redirect_uri='.$_SERVER['SERVER_NAME'].'/oauth_redirect&scope=user,repo';
+    $auth_url = 'https://github.com/login/oauth/authorize?client_id=d9ff044e5a5eba36673b&redirect_uri='.$config['callback_url'].'scope=user,repo';
 
     $app->get('/?', function() use ($auth_url, $app)  {
         if(isset($_COOKIE['access_token'])) {
@@ -20,6 +20,7 @@
     });
 
     $app->get('/api/user/?', function() use ($app) {
+        var_dump(headers_list());
         echo get_json('https://api.github.com/user');
     });
 

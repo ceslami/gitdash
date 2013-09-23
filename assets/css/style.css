@@ -327,3 +327,29 @@ footer .inner .meta-data {
 .badge.white-text {
     color:#fff;
 }
+
+svg {
+    width:80%;
+    height:245px;
+    margin:0 9% 0 11%;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+  width:10px;
+}
+
+.bar {
+  fill: steelblue;
+  opacity:.5;
+}
+.bar:hover {
+    opacity:.8;
+}
+
+.x.axis path {
+  display: none;
+}

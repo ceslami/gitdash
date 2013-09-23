@@ -1,5 +1,7 @@
 var HomeLayout = Marionette.Layout.extend({
     template: "#home",
+    timers: [],
+
 
     regions: {
         experiments: '.experiments',
@@ -7,14 +9,36 @@ var HomeLayout = Marionette.Layout.extend({
     },
 
     onShow: function() {
-        var experimentView = new HomePullRequestsView({
-                collection: App.collections.pull_requests
+        var self = this;
+
+
+        this.timers.refresh = setInterval(function() {
+            App.collections.pull_requests.fetch().done(function() {
+                self.displayRegions();
+            });
+        }, 10000);
+    },
+
+    displayRegions: function() {
+        var pull_requests = new Backbone.Collection(App.collections.pull_requests.models),
+            experimentView = new HomePullRequestsView({
+                collection: pull_requests
             }),
             headsUp = new HomeHeadsUpView({
-                collection: App.collections.pull_requests
+                collection: pull_requests
             });
 
         this.experiments.show(experimentView);
         this.overview.show(headsUp);
+    },
+
+    clearTimers: function() {
+        _.each(this.timers, function(el, i) {
+            clearInterval(el);
+        });
+    },
+
+    onClose: function() {
+        this.clearTimers();
     }
 });
