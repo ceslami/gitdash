@@ -8,7 +8,7 @@
     <body>
         <div id='content'>
             <div class="page-loading-status">
-                <img src="http://www.chimply.com/coconut/images/516706">
+                <img src="/assets/img/spinner.gif">
             </div>
         </div>
         <footer class="footer"></footer>

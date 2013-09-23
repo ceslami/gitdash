@@ -4,7 +4,7 @@
             <li class="home active" title="Home"><div class="icon icon-home"></div></li>
             <li class="settings" title="Settings"><div class="icon icon-cogs"></div></li>
             <div class="loading-status">
-                <img style="width:100%" src="http://www.chimply.com/coconut/images/516706">
+                <img style="width:100%" src="/assets/img/spinner.gif">
             </div>
         </ul>
         <div style="float:left;margin:0 0 0 10px">

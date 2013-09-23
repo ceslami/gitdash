@@ -15,17 +15,6 @@
     -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
 }
 
-.loading-status {
-    width:30px;
-    height:13px;
-    margin:13px 0 0 10px;
-    display:inline-block;
-}
-.loading-status img {
-    height:100%;
-}
-
-
 /* CONTENT *******************************************************************/
 
 #content {
@@ -288,6 +277,16 @@ footer .inner .pages li .icon {
 }
 footer .inner .meta-data {
     float:right
+}
+
+footer .inner .loading-status {
+    width:30px;
+    height:13px;
+    margin:13px 0 0 10px;
+    display:inline-block;
+}
+footer .inner .loading-status img {
+    height:100%;
 }
 
 .badge {
