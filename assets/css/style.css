@@ -188,6 +188,7 @@
 #settings form.settings fieldset .days {
     display:inline-block;margin:8px 0 0 10px;font-size:14px;
 }
+.button,
 #settings button.save,
 #settings button.save:focus {
     background: #4bf;
@@ -206,6 +207,7 @@
     -o-transition: background 0.3s ease, color 0.3s ease;
     transition: background 0.3s ease, color 0.3s ease;
 }
+
 #settings button.save:not([disabled]):hover {
     background:#5EC0F8;
 }

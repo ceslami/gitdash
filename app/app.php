@@ -9,7 +9,7 @@
         if(isset($_COOKIE['access_token'])) {
             $app->redirect('/app');
         }
-        echo "<a href='".$auth_url."'>Log in with Github</a>";
+        include 'templates/login.php';
     });
 
     $app->get('/oauth_redirect/?', function() use ($app) {
