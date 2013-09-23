@@ -7,6 +7,8 @@ gitdash is a tool for teams who use Github.
 gitdash is a Backbone/Marionette application with a featherlight PHP backend
 powered by SlimPHP.
 
+![Screenshot: Homepage](https://raw.github.com/ceslami/gitdash/master/assets/img/screenshot.png)
+
 To start using this application:
 
 1. Download and open MAMP
