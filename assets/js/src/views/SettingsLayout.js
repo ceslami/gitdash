@@ -12,7 +12,7 @@ var SettingsLayout = Marionette.ItemView.extend({
                 user = App.collections.user;
 
             _.each(user.get('organizations'), function(el, i) {
-                options += "<option value='"+el.login+"'>"+el.login+"</option>";
+                options += "<option value='"+el.login+"' "+(App.settings.get('organization') == el.login ? 'selected' : '')+">"+el.login+"</option>";
             })
 
             return options;

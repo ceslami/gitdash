@@ -122,6 +122,7 @@
                     </div>
                 </label>
                 <select class="refresh-interval">
+                    <option value="1" <%= refresh_interval == 1 ? 'selected' : '' %>>1 minute</option>
                     <option value="5" <%= refresh_interval == 5 ? 'selected' : '' %>>5 minutes</option>
                     <option value="10" <%= refresh_interval == 10 ? 'selected' : '' %>>10 minutes</options>
                     <option value="20" <%= refresh_interval == 20 ? 'selected' : '' %>>20 minutes</options>

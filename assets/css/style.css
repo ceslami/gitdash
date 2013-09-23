@@ -17,9 +17,12 @@
 
 .loading-status {
     width:30px;
-    height:15px;
+    height:13px;
     margin:13px 0 0 10px;
     display:inline-block;
+}
+.loading-status img {
+    height:100%;
 }
 
 
