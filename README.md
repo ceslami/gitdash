@@ -1,9 +1,8 @@
 # gitdash
 
-gitdash is a tool for teams who use Github. Right now, you have to be in an
-organization to use this tool.
+gitdash is a tool for teams who use Github.
 
-### Getting Started
+#### Getting Started
 
 gitdash is a Backbone/Marionette application with a featherlight PHP backend
 powered by SlimPHP.
@@ -15,7 +14,7 @@ To start using this application:
     * Go the Apache menu, change the Document Root to the location where
       you cloned this repo
 2. Log into Github
-    * [create a new application](https://github.com/settings/applications/new)
+    * [Create a new Github application](https://github.com/settings/applications/new)
     * Set your Hompage URL to ``http://localhost:8888``
     * Set your Authorization Callback URL to ``http://localhost:8888/oauth_login``
 3. Update your config.php
@@ -25,3 +24,5 @@ To start using this application:
     * Leave the values for ``app_url`` and ``callback_url`` in place
 4. Navigate to [http://locahost:8888](http://locahost:8888) and click login. Give
    yourself permissions and you're off to the races!
+
+:100:
