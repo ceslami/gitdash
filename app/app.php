@@ -3,7 +3,7 @@
     include 'src/init.php';
     include 'src/lib.php';
 
-    $auth_url = 'https://github.com/login/oauth/authorize?client_id=d9ff044e5a5eba36673b&redirect_uri='.$config['callback_url'].'scope=user,repo';
+    $auth_url = 'https://github.com/login/oauth/authorize?client_id='.$config['client_id'].'&redirect_uri='.$config['callback_url'].'scope=user,repo';
 
     $app->get('/?', function() use ($auth_url, $app)  {
         if(isset($_COOKIE['access_token'])) {
@@ -20,7 +20,6 @@
     });
 
     $app->get('/api/user/?', function() use ($app) {
-        var_dump(headers_list());
         echo get_json('https://api.github.com/user');
     });
 
@@ -44,6 +43,22 @@
         }
 
         echo json_encode($pull_requests);
+    });
+
+    $app->get('/api/pulls/stats/?', function() use ($app) {
+        $commits  = array();
+        $repos = get_data('https://api.github.com/orgs/Betterment/repos?type=private');
+
+        foreach($repos as $repo) {
+            $weeks = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/stats/commit_activity');
+            if(count($weeks)) {
+                $data = array_slice(array_reverse($weeks), -3, 3);
+                $merged = array_merge($data[0]->days, $data[1]->days, $data[2]->days);
+                $commits[] = array("commits" => $merged);
+            }
+        }
+
+        echo json_encode($commits);
     });
 
     $app->get('/app/?', function() use ($app) {

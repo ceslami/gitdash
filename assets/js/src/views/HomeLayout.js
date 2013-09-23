@@ -11,16 +11,17 @@ var HomeLayout = Marionette.Layout.extend({
     onShow: function() {
         var self = this;
 
+        this.displayRegions();
 
         this.timers.refresh = setInterval(function() {
             App.collections.pull_requests.fetch().done(function() {
                 self.displayRegions();
             });
-        }, 10000);
+        }, 10*60*1000);
     },
 
     displayRegions: function() {
-        var pull_requests = new Backbone.Collection(App.collections.pull_requests.models),
+        var pull_requests = new PullRequests(App.collections.pull_requests.models),
             experimentView = new HomePullRequestsView({
                 collection: pull_requests
             }),

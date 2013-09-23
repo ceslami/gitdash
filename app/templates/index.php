@@ -47,12 +47,14 @@
         <script type="text/javascript" src="/assets/js/src/models/PullRequest.js"></script>
         <script type="text/javascript" src="/assets/js/src/models/PullRequests.js"></script>
         <script type="text/javascript" src="/assets/js/src/models/Settings.js"></script>
+        <script type="text/javascript" src="/assets/js/src/models/CommitActivity.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/PullRequestItemView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/HomePullRequestsView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/HomeHeadsUpView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/HomeLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/FooterLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/SettingsLayout.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/CommitActivityGraphView.js"></script>
         <script type="text/javascript" src="/assets/js/src/Router.js"></script>
 
         <script type="text/javascript" src="/assets/js/src/init.js"></script>

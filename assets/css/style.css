@@ -164,7 +164,8 @@ header .inner .logo {
 .overview .row .col-2 {
     width:50%;float:left;text-align:center;
 }
-.overview .row .col-2 .title {
+.overview .row .col-2 .title,
+.overview .commit-history .title {
     color:#666;cursor:help;font-weight:200
 }
 .overview .row .col-2 .chart {
@@ -173,7 +174,9 @@ header .inner .logo {
 .overview .row .col-2 .number {
     font-size: 85px;margin: 13px 0 0;font-weight: 100;
 }
-
+.overview .commit-history .title {
+    text-align:center;
+}
 #settings {
     margin:20px;
 }
@@ -259,6 +262,7 @@ footer {
     position:absolute;height:40px;
     bottom:0;left:0;right:0;
     border-top:1px solid #e5e5e5;
+    background:#fff;
 }
 footer .inner {
     margin:12px;
