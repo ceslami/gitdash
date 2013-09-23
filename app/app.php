@@ -56,7 +56,7 @@
 
         foreach($repos as $repo) {
             $weeks = get_data('https://api.github.com/repos/'.$org.'/'.$repo->name.'/stats/commit_activity');
-            if(count($weeks)) {
+            if(is_array($weeks)) { // when there is no data, $weeks is an object
                 $data = array_slice(array_reverse($weeks), -3, 3);
                 $merged = array_merge($data[0]->days, $data[1]->days, $data[2]->days);
                 $commits[] = array("commits" => $merged);

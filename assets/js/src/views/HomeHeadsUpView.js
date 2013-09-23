@@ -1,7 +1,5 @@
 var HomeHeadsUpView = Marionette.Layout.extend({
     template: "#home-heads-up",
-    tagName: 'article',
-    className: 'song',
 
     regions: {
         'commitGraph': '.commit-history'
