@@ -8,7 +8,7 @@
             </div>
         </ul>
         <div style="float:left;margin:0 0 0 10px">
-            Last update: <span class="last-update"></span>
+            Last refresh: <span class="last-update"></span>
         </div>
         <div class="meta-data">
             Have a suggestion? <a target="_blank" href="https://github.com/ceslami/gitdash/issues/new?labels=enhancement">Make a feature request</a> or <a href="https://github.com/ceslami/gitdash/">open a pull request</a>. &nbsp;&middot;&nbsp; GitDash &nbsp;&middot;&nbsp; Cyrus Eslami, 2013
@@ -141,11 +141,12 @@
                     <%= organization_list() %>
                 </select>
             </fieldset>
+            <button class="save">Save Settings</button>
+            <div class="saved-successfully">
+                <span class="icon-ok"></span> Saved successfully.
+            </div>
         </form>
-        <button class="save">Save Settings</button>
-        <div class="saved-successfully">
-            <span class="icon-ok"></span> Saved successfully.
-        </div>
+
     </div>
 </script>
 <script type="text/template" id="commit-graph">

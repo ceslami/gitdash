@@ -146,7 +146,8 @@
 /* SETTINGS ******************************************************************/
 
 #settings {
-    margin:20px;
+    float:left;width:100%;overflow-y:scroll;font-size:14px;
+    height:100%;
 }
 #settings .header {
     font-size:18px;
@@ -156,7 +157,7 @@
     border-bottom:1px solid #e5e5e5
 }
 #settings form.settings {
-
+    margin:0 10px;
 }
 #settings form.settings fieldset {
     display:block;
