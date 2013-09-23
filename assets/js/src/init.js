@@ -14,7 +14,7 @@ $(document).ready(function() {
             user: user
         });
 
-        App.vent   = _.extend({}, Backbone.Events);
+        App.vent = _.extend({}, Backbone.Events);
         App.settings = new Settings();
         App.router = new Router();
         Backbone.history.start();

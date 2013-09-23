@@ -7,8 +7,11 @@
                 <img style="width:100%" src="http://www.chimply.com/coconut/images/516706">
             </div>
         </ul>
+        <div style="float:left;margin:0 0 0 10px">
+            Last update: <span class="last-update"></span>
+        </div>
         <div class="meta-data">
-            Have a suggestion? <a target="_blank" href="https://github.com/ceslami/gitdash/issues/new?labels=enhancement">Make a feature request</a> or <a href="https://github.com/ceslami/gitdash/">open a pull request</a>. &nbsp;&middot;&nbsp; GitDash, Cyrus Eslami &nbsp;&middot;&nbsp; 2013
+            Have a suggestion? <a target="_blank" href="https://github.com/ceslami/gitdash/issues/new?labels=enhancement">Make a feature request</a> or <a href="https://github.com/ceslami/gitdash/">open a pull request</a>. &nbsp;&middot;&nbsp; GitDash &nbsp;&middot;&nbsp; Cyrus Eslami, 2013
         </div>
     </div>
 </script>
@@ -71,7 +74,6 @@
         <div style="clear:both"></div>
     </div>
     <div class="row commit-history">
-
     </div>
 </script>
 <script type="text/template" id="home-pull-requests">
@@ -109,6 +111,36 @@
                 </label>
                 <input type="number" min="1" max="10" class="freshness-threshold" value="<%= freshness_threshold %>"> <span class="days">days</span>
             </fieldset>
+            <fieldset>
+                <label>
+                    <div class="title">Refresh Interval:</div>
+                    <div class="description">
+                        How often do you want the Dashboard to refresh its
+                        data? Remember, setting this value too low might
+                        put you over your Github API request limit, depending
+                        on how many repos and pull requests you generate.
+                    </div>
+                </label>
+                <select class="refresh-interval">
+                    <option value="5" <%= refresh_interval == 5 ? 'selected' : '' %>>5 minutes</option>
+                    <option value="10" <%= refresh_interval == 10 ? 'selected' : '' %>>10 minutes</options>
+                    <option value="20" <%= refresh_interval == 20 ? 'selected' : '' %>>20 minutes</options>
+                    <option value="30" <%= refresh_interval == 30 ? 'selected' : '' %>>30 minutes</options>
+                    <option value="60" <%= refresh_interval == 60 ? 'selected' : '' %>>1 hour</options>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label>
+                    <div class="title">Organization:</div>
+                    <div class="description">
+                        Select the organization that you would like to
+                        display data for.
+                    </div>
+                </label>
+                <select class="organization">
+                    <%= organization_list() %>
+                </select>
+            </fieldset>
         </form>
         <button class="save">Save Settings</button>
         <div class="saved-successfully">
@@ -119,6 +151,8 @@
 <script type="text/template" id="commit-graph">
     <div class="title" title="Commits per day across all repos for a given time period.">Commits per day (last 3 weeks)</div>
     <div class="commit-history-graph">
-
+         <div style="width:100px;height:20px;font-size:12px;margin:80px auto 0;display:block;text-align:center">
+            Loading data...
+        </div>
     </div>
 </script>

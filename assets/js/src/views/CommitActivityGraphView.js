@@ -2,11 +2,17 @@ var CommitActivityGraphView = Marionette.ItemView.extend({
     template: '#commit-graph',
 
     onShow: function() {
-        this.drawGraph()
+        var self = this;
+
+        this.collection = new CommitActivity();
+        this.collection.fetch().then(function() {
+            self.drawGraph()
+        });
     },
 
     drawGraph: function() {
-        var data = [],
+        var self = this,
+            data = [],
             totals = [],
             commit_data = this.collection.models;
 
@@ -27,7 +33,11 @@ var CommitActivityGraphView = Marionette.ItemView.extend({
             })
         });
 
-        this.drawBarGraph(data);
+        $(".commit-history-graph").html('').animate({
+            opacity: '0'
+        }, 300, function() {
+            self.drawBarGraph(data);
+        });
     },
 
     drawBarGraph: function(data) {
@@ -51,12 +61,12 @@ var CommitActivityGraphView = Marionette.ItemView.extend({
             .orient("left");
 
         var svg = d3.select(".commit-history-graph").append("svg")
-            .attr('viewBox', '0 0 960 350')
-            .attr('preserveAspectRatio', 'xMidYMid')
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-          .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+                    .attr('viewBox', '0 0 960 350')
+                    .attr('preserveAspectRatio', 'xMidYMid')
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom)
+                  .append("g")
+                    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
         x.domain(data.map(function(d) { return d.letter; }));
         y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
@@ -83,12 +93,16 @@ var CommitActivityGraphView = Marionette.ItemView.extend({
           .attr("x", function(d) { return x(d.letter); })
           .attr("width", x.rangeBand())
           .attr("y", function(d) { return y(d.frequency); })
-          .attr("height", function(d) { return height - y(d.frequency); });
+              .attr("height", function(d) { return height - y(d.frequency); });
 
         function type(d) {
           d.frequency = +d.frequency;
           return d;
         }
+
+        $(".commit-history-graph").animate({
+            opacity: '1'
+        }, 300);
     }
 });
 

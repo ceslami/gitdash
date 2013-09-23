@@ -15,28 +15,6 @@
     -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
 }
 
-a {
-
-}
-
-header {
-    display:none;
-    height:40px;
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    border-bottom:1px solid #e5e5e5;
-}
-header .inner {
-    margin:10px;
-}
-header .inner .logo {
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    float:left;
-}
 .loading-status {
     width:30px;
     height:15px;
@@ -44,25 +22,8 @@ header .inner .logo {
     display:inline-block;
 }
 
-.sidebar {
-    display:none;
-    position:absolute;
-    top:0;
-    left:0;
-    bottom:40px;
-    width:50px;
-    border-right:1px solid #e5e5e5;
-}
-.sidebar ul {
-    list-style:none;
-    margin: 10px 0 0;
-    padding: 0;
-    text-align: center;
-}
-.sidebar ul li {
-    margin: 0 0 10px;
-    display:block;
-}
+
+/* CONTENT *******************************************************************/
 
 #content {
     position:absolute;bottom: 50px;top: 10px;left: 10px;right: 10px;
@@ -176,12 +137,19 @@ header .inner .logo {
 }
 .overview .commit-history .title {
     text-align:center;
+    margin:0 0 -20px;
 }
+.overview .commit-history {
+    position:relative;
+}
+
+/* SETTINGS ******************************************************************/
+
 #settings {
     margin:20px;
 }
 #settings .header {
-    font-size:16px;
+    font-size:18px;
     font-weight:200;
     margin:0 0 12px;
     padding:0 0 12px;
@@ -218,6 +186,11 @@ header .inner .logo {
 }
 #settings form.settings fieldset input[type=number] {
     width:60px;
+}
+#settings form.settings fieldset select {
+    margin:8px 0 0;
+    display:block;
+    float:left;
 }
 #settings form.settings fieldset .days {
     display:inline-block;margin:8px 0 0 10px;font-size:14px;
@@ -258,6 +231,9 @@ header .inner .logo {
 #settings .saved-successfully .icon-ok {
     color:#37C737;
 }
+
+/* FOOTER ********************************************************************/
+
 footer {
     position:absolute;height:40px;
     bottom:0;left:0;right:0;
@@ -331,6 +307,8 @@ footer .inner .meta-data {
 .badge.white-text {
     color:#fff;
 }
+
+/* GRAPH STYLES **************************************************************/
 
 svg {
     width:80%;

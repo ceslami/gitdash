@@ -17,7 +17,7 @@ var HomeLayout = Marionette.Layout.extend({
             App.collections.pull_requests.fetch().done(function() {
                 self.displayRegions();
             });
-        }, 10*60*1000);
+        }, App.settings.get('refresh_interval')*60*1000);
     },
 
     displayRegions: function() {
@@ -31,6 +31,8 @@ var HomeLayout = Marionette.Layout.extend({
 
         this.experiments.show(experimentView);
         this.overview.show(headsUp);
+
+        $('.last-update').text((new Date()).toLocaleTimeString());
     },
 
     clearTimers: function() {

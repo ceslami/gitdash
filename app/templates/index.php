@@ -6,20 +6,6 @@
         <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <header>
-            <div class="inner">
-                <div class="logo">GitDash</div>
-                <div class="loading-status">
-                    <img style="width:100%" src="http://www.chimply.com/coconut/images/516706">
-                </div>
-            </div>
-        </header>
-        <div class="sidebar">
-            <ul class="pages">
-                <li><span class="icon-home"></span></li>
-                <li><span class="icon-cogs"></span></li>
-            </ul>
-        </div>
         <div id='content'>
             <div class="page-loading-status">
                 <img src="http://www.chimply.com/coconut/images/516706">

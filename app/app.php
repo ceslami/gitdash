@@ -20,22 +20,27 @@
     });
 
     $app->get('/api/user/?', function() use ($app) {
-        echo get_json('https://api.github.com/user');
+        // echo get_json('https://api.github.com/user');
+
+        $user = get_data('https://api.github.com/user');
+        $user->organizations = get_data('https://api.github.com/user/orgs');
+
+        echo json_encode($user);
     });
 
-    $app->get('/api/repos/?', function() use ($app) {
-        echo get_json('https://api.github.com/orgs/Betterment/repos?type=private');
+    $app->get('/api/:org/repos/?', function($org) use ($app) {
+        echo get_json('https://api.github.com/orgs/'.$org.'/repos?type=private');
     });
 
-    $app->get('/api/pulls/?', function() use ($app) {
+    $app->get('/api/:org/pulls/?', function($org) use ($app) {
         $pull_requests = array();
-        $repos = get_data('https://api.github.com/orgs/Betterment/repos?type=private');
+        $repos = get_data('https://api.github.com/orgs/'.$org.'/repos?type=private');
 
         foreach($repos as $repo) {
-            $pulls = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls');
+            $pulls = get_data('https://api.github.com/repos/'.$org.'/'.$repo->name.'/pulls');
             if(count($pulls)) {
                 foreach($pulls as $pr) {
-                    $pr_data = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/pulls/'.$pr->number);
+                    $pr_data = get_data('https://api.github.com/repos/'.$org.'/'.$repo->name.'/pulls/'.$pr->number);
                     $pr_data->comments_list = get_data($pr->comments_url);
                     $pull_requests[] = $pr_data;
                 }
@@ -45,12 +50,12 @@
         echo json_encode($pull_requests);
     });
 
-    $app->get('/api/pulls/stats/?', function() use ($app) {
+    $app->get('/api/:org/stats/commits/?', function($org) use ($app) {
         $commits  = array();
-        $repos = get_data('https://api.github.com/orgs/Betterment/repos?type=private');
+        $repos = get_data('https://api.github.com/orgs/'.$org.'/repos?type=private');
 
         foreach($repos as $repo) {
-            $weeks = get_data('https://api.github.com/repos/Betterment/'.$repo->name.'/stats/commit_activity');
+            $weeks = get_data('https://api.github.com/repos/'.$org.'/'.$repo->name.'/stats/commit_activity');
             if(count($weeks)) {
                 $data = array_slice(array_reverse($weeks), -3, 3);
                 $merged = array_merge($data[0]->days, $data[1]->days, $data[2]->days);

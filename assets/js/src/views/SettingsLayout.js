@@ -6,6 +6,19 @@ var SettingsLayout = Marionette.ItemView.extend({
         "click .save": "saveSettings"
     },
 
+    templateHelpers: {
+        organization_list: function() {
+            var options,
+                user = App.collections.user;
+
+            _.each(user.get('organizations'), function(el, i) {
+                options += "<option value='"+el.login+"'>"+el.login+"</option>";
+            })
+
+            return options;
+        }
+    },
+
     restrictNumeric: function(e) {
         var a = [],
             k = e.which;
@@ -24,7 +37,9 @@ var SettingsLayout = Marionette.ItemView.extend({
     saveSettings: function(e) {
         App.settings.set({
             approval_words: $('input.approval-words').val(),
-            freshness_threshold: $('input.freshness-threshold').val()
+            freshness_threshold: $('input.freshness-threshold').val(),
+            refresh_interval: parseInt($('select.refresh-interval').val()),
+            organization: $('select.organization').val()
         });
 
         for(key in App.settings.attributes) {

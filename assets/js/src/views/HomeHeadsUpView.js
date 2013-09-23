@@ -33,11 +33,6 @@ var HomeHeadsUpView = Marionette.Layout.extend({
         $('.ready-to-merge').html(this.collection.getReadyToMerge().length ? this.collection.getReadyToMerge().length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
         $('.uncommented').html(this.collection.getUncommented().length ? this.collection.getUncommented().length : '<div style="display:block;padding:8px 0 0;color:#47CC67" class="icon-ok"></div>');
 
-        var commits = new CommitActivity();
-        commits.fetch().then(function() {
-            self.commitGraph.show(new CommitActivityGraphView({
-                collection: commits
-            }));
-        });
+        self.commitGraph.show(new CommitActivityGraphView());
     }
 });

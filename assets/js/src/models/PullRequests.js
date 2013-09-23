@@ -2,7 +2,7 @@ var PullRequests = Backbone.Collection.extend({
     model: PullRequest,
 
     url: function() {
-      return 'http://localhost:8888/api/pulls/';
+      return 'http://localhost:8888/api/'+App.settings.get('organization')+'pulls/';
     },
 
     stalePullRequests: function() {
