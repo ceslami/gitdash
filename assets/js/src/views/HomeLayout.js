@@ -11,16 +11,16 @@ var HomeLayout = Marionette.Layout.extend({
     onShow: function() {
         var self = this;
 
-        this.displayRegions();
+        this.displayRegions(self);
 
         this.timers.refresh = setInterval(function() {
             App.collections.pull_requests.fetch().done(function() {
-                self.displayRegions();
+                self.displayRegions(self);
             });
         }, App.settings.get('refresh_interval')*60*1000);
     },
 
-    displayRegions: function() {
+    displayRegions: function(context) {
         var pull_requests = new PullRequests(App.collections.pull_requests.models),
             experimentView = new HomePullRequestsView({
                 collection: pull_requests
@@ -29,8 +29,8 @@ var HomeLayout = Marionette.Layout.extend({
                 collection: pull_requests
             });
 
-        this.experiments.show(experimentView);
-        this.overview.show(headsUp);
+        context.experiments.show(experimentView);
+        context.overview.show(headsUp);
 
         $('.last-update').text((new Date()).toLocaleTimeString());
     },
