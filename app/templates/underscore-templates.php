@@ -142,11 +142,13 @@
                     <%= organization_list() %>
                 </select>
             </fieldset>
+        </form>
+        <div style="margin:10px">
             <button class="save">Save Settings</button>
             <div class="saved-successfully">
                 <span class="icon-ok"></span> Saved successfully.
             </div>
-        </form>
+        </div>
 
     </div>
 </script>

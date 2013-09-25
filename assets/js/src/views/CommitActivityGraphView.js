@@ -95,6 +95,7 @@ var CommitActivityGraphView = Marionette.ItemView.extend({
           .attr("y", function(d) { return y(d.frequency); })
               .attr("height", function(d) { return height - y(d.frequency); });
 
+
         function type(d) {
           d.frequency = +d.frequency;
           return d;
