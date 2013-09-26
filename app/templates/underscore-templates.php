@@ -1,8 +1,12 @@
 <script type="text/template" id="footer">
     <div class="inner">
         <ul class="pages">
-            <li class="home active" title="Home"><div class="icon icon-home"></div></li>
-            <li class="settings" title="Settings"><div class="icon icon-cogs"></div></li>
+            <li class="active" data-page="" title="Home">
+                <div class="icon icon-home"></div>
+            </li>
+            <li data-page="settings" title="Settings">
+                <div class="icon icon-cogs"></div>
+            </li>
             <div class="loading-status">
                 <img style="width:100%" src="/assets/img/spinner.gif">
             </div>
