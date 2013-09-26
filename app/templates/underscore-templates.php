@@ -1,10 +1,10 @@
 <script type="text/template" id="footer">
     <div class="inner">
         <ul class="pages">
-            <li class="active" data-page="" title="Home">
+            <li class="active home" data-page="#" title="Home">
                 <div class="icon icon-home"></div>
             </li>
-            <li data-page="settings" title="Settings">
+            <li class="settings" data-page="settings" title="Settings">
                 <div class="icon icon-cogs"></div>
             </li>
             <div class="loading-status">

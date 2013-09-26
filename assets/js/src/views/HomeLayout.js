@@ -2,7 +2,6 @@ var HomeLayout = Marionette.Layout.extend({
     template: "#home",
     timers: [],
 
-
     regions: {
         experiments: '.experiments',
         overview: '#overview'

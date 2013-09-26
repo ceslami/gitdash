@@ -7,11 +7,9 @@ App.addRegions({
 });
 
 $(document).ajaxStart(function() {
-    console.log('start')
     $('.loading-status').show();
 })
 $(document).ajaxStop(function() {
-    console.log('stop')
     $('.loading-status').hide();
 });
 

@@ -1,10 +1,10 @@
 var Settings = Backbone.Model.extend({
     initialize: function() {
         this.set({
-            approval_words: localStorage.getItem('settings.approval_words') ? localStorage.getItem('settings.approval_words') : 'lgtm',
-            freshness_threshold: localStorage.getItem('settings.freshness_threshold') ? localStorage.getItem('settings.freshness_threshold') : 3,
-            refresh_interval: localStorage.getItem('settings.refresh_interval') ? localStorage.getItem('settings.refresh_interval') : 10,
-            organization: 'Betterment'
+            approval_words: localStorage.getItem('settings.approval_words') || 'lgtm',
+            freshness_threshold: localStorage.getItem('settings.freshness_threshold') || 3,
+            refresh_interval: localStorage.getItem('settings.refresh_interval') || 10,
+            organization: localStorage.getItem('settings.organization') || 'Betterment'
         });
     },
     sync: function(method, model, options) {

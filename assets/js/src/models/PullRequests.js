@@ -32,18 +32,5 @@ var PullRequests = Backbone.Collection.extend({
         return _.filter(this.models, function(el) {
             return el.isUncommented();
         });
-    },
-
-    parse: function(response) {
-        if(response !== undefined) {
-            _.each(response.models, function(el, i) {
-                var lastIndex = i ? i-1 : 0,
-                    isFirstInRepo = response.models[i].get('head').repo.name != response.models[lastIndex].get('head').repo.name;
-
-                response.models[i].set('showRepoName', isFirstInRepo || !i);
-            })
-        }
-
-        return response;
     }
 });
