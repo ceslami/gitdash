@@ -35,18 +35,12 @@ var SettingsLayout = Marionette.ItemView.extend({
     },
 
     saveSettings: function(e) {
-        App.settings.set({
+        App.settings.save({
             approval_words: $('input.approval-words').val(),
             freshness_threshold: $('input.freshness-threshold').val(),
             refresh_interval: parseInt($('select.refresh-interval').val()),
             organization: $('select.organization').val()
         });
-
-        for(key in App.settings.attributes) {
-            if(App.settings.attributes.hasOwnProperty(key)) {
-                localStorage.setItem('settings.'+key, App.settings.attributes[key]);
-            }
-        }
 
         $('.saved-successfully').fadeIn(200).delay(1500).fadeOut(200)
     }

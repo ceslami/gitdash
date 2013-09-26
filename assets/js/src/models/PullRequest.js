@@ -24,5 +24,8 @@ var PullRequest = Backbone.Model.extend({
     },
     isUncommented: function() {
         return this.get('comments') < 1;
+    },
+    isOffMaster: function() {
+        return this.get('base').ref == 'master';
     }
 });

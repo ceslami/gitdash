@@ -47,7 +47,7 @@
                 <%= commits %> commits &nbsp;&middot;&nbsp; <%= changed_files %> files &nbsp;&middot;&nbsp; <%= comments %> Comments
             </div>
         </td>
-        <td class="age" valign='top'><%= days_ago() %></td>
+        <td class="age" valign='top'><%= model.days_ago() %></td>
     </tr>
 </script>
 <script type="text/template" id="home-heads-up">

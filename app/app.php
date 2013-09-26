@@ -20,8 +20,6 @@
     });
 
     $app->get('/api/user/?', function() use ($app) {
-        // echo get_json('https://api.github.com/user');
-
         $user = get_data('https://api.github.com/user');
         $user->organizations = get_data('https://api.github.com/user/orgs');
 
