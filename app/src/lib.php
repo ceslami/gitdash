@@ -15,9 +15,10 @@
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_PROTOCOLS, CURLPROTO_HTTPS);
 
-        $output = curl_exec($ch);
+        $result = curl_exec($ch);
         curl_close($ch);
-        return $output;
+
+        return $result;
     }
 
     function curl_post($url, $fields) {

@@ -159,7 +159,7 @@
 <script type="text/template" id="commit-graph">
     <div class="title" title="Commits per day across all repos for a given time period.">Commits per day (last 3 weeks)</div>
     <div class="commit-history-graph">
-         <div style="width:100px;height:20px;font-size:12px;margin:80px auto 0;display:block;text-align:center">
+         <div class="loading">
             Loading data...
         </div>
     </div>
