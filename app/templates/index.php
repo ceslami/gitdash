@@ -6,6 +6,7 @@
         <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
+        <?php include 'analytics.php'; ?>
         <div id='content'>
             <div class="page-loading-status">
                 <img src="/assets/img/spinner.gif">

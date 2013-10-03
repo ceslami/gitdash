@@ -11,6 +11,7 @@ var Router = Backbone.Router.extend({
 
   change: function(page) {
     this.setNavClasses(page);
+    ga('send', 'pageview', page);
   },
 
   setNavClasses: function(page) {
