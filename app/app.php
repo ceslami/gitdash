@@ -65,6 +65,9 @@
     });
 
     $app->get('/app/?', function() use ($app) {
+        if(!isset($_COOKIE['access_token'])) {
+            $app->redirect('/app');
+        }
         include 'templates/index.php';
     });
 
