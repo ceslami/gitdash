@@ -22,6 +22,7 @@ var HomePullRequestsView = Marionette.CompositeView.extend({
 
                 self.collection.models[i].set('showRepoName', isFirstInRepo || !i);
             })
+            console.log(this.collection)
         }
     }
 });
