@@ -18,6 +18,9 @@
         <?php include 'underscore-templates.php'; ?>
 
         <!-- SCRIPTS -->
+        <script type="text/javascript">
+            APP_URL = <?php echo $config['app_url']; ?>
+        </script>
         <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/local-storage.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery.min.js"></script>

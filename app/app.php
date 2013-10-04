@@ -73,7 +73,7 @@
         echo json_encode($commits);
     });
 
-    $app->get('/app/?', function() use ($app) {
+    $app->get('/app/?', function() use ($app, $config) {
         if(!isset($_COOKIE['access_token'])) {
             $app->redirect('/app');
         }
