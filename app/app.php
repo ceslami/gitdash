@@ -1,5 +1,12 @@
 <?php
-    include 'src/config.php';
+    $is_production = true;
+
+    if($is_production) {
+        include 'src/prod/config.php';
+    } else {
+       include 'src/config.php';
+    }
+
     include 'src/init.php';
     include 'src/lib.php';
 
