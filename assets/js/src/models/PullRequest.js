@@ -3,11 +3,15 @@ var PullRequest = Backbone.Model.extend({
         var now = new Date(),
             date = new Date(this.get('created_at')),
             datediff = now.getTime() - date.getTime(),
-            daysAgo = Math.floor(datediff/(1000*60*60*24));
+            daysAgo = Math.floor(datediff/(1000*60*60*24)),
+            unit = daysAgo === 1 ? 'day' : 'days';
 
         if(asInt) return daysAgo;
 
-        return daysAgo ? daysAgo+' days ago' : '<24 hours ago';
+
+        return daysAgo
+                ? daysAgo+' '+unit+' ago'
+                : '<24 hours ago';
     },
     hasApproval: function() {
         var approvals = _.filter(this.allComments(), function(el) {
