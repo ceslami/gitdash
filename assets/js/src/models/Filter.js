@@ -10,6 +10,16 @@ var Filter = Backbone.Model.extend({
             }, 0);
 
         return !failed;
+    },
+    getBadgeSettings: function() {
+        return {
+            style: {
+                background: this.get('bgColor'),
+                text: 'white-text'
+            },
+            title: this.get('description'),
+            text: this.get('name')
+        };
     }
 });
 

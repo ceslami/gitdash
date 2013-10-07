@@ -22,14 +22,7 @@ var PullRequestItemView = Marionette.ItemView.extend({
 
             return _.reduce(filters, function(memo, filter) {
                 if (filter.test(self.model)) {
-                    memo += self.print_badge({
-                        style: {
-                            background: filter.get('bgColor'),
-                            text: 'white-text'
-                        },
-                        title: filter.get('description'),
-                        text: filter.get('name')
-                    });
+                    memo += self.print_badge(filter.getBadgeSettings());
                 }
                 return memo;
             }, "");
