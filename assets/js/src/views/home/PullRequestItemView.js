@@ -18,13 +18,11 @@ var PullRequestItemView = Marionette.ItemView.extend({
         },
         print_badges: function() {
             var self = this,
-                filters = App.settings.get('filters').models,
-                badges = "";
+                filters = App.settings.get('filters').models;
 
-            _.each(filters, function(filter, i) {
-                // ...then print a badge if none did.
+            return _.reduce(filters, function(memo, filter) {
                 if (filter.test(self.model)) {
-                    badges += self.print_badge({
+                    memo += self.print_badge({
                         style: {
                             background: filter.get('bgColor'),
                             text: 'white-text'
@@ -33,9 +31,8 @@ var PullRequestItemView = Marionette.ItemView.extend({
                         text: filter.get('name')
                     });
                 }
-            });
-
-            return badges;
+                return memo;
+            }, "");
         }
     },
 
