@@ -10,7 +10,7 @@ var PullRequest = Backbone.Model.extend({
         return daysAgo ? daysAgo+' days ago' : '<24 hours ago';
     },
     hasApproval: function() {
-        var approvals = _.filter(this.get('comments_list'), function(el) {
+        var approvals = _.filter(this.allComments(), function(el) {
             var words = App.settings.get('approval_words').split(','),
                 contains = 0;
 
@@ -23,9 +23,12 @@ var PullRequest = Backbone.Model.extend({
         return approvals.length > 0;
     },
     isUncommented: function() {
-        return this.get('comments') < 1;
+        return this.allComments() < 1;
     },
     isOffMaster: function() {
         return this.get('base').ref == 'master';
+    },
+    allComments: function() {
+        return this.get('comments_list').concat(this.get('review_comments_list'));
     }
 });

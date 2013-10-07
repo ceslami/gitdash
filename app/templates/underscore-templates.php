@@ -48,7 +48,7 @@
                 <%= is_off_master_badge() %>
             </div>
             <div class="stats">
-                <%= commits %> commits &nbsp;&middot;&nbsp; <%= changed_files %> files &nbsp;&middot;&nbsp; <%= comments %> Comments
+                <%= commits %> commits &nbsp;&middot;&nbsp; <%= changed_files %> files &nbsp;&middot;&nbsp; <%= model.allComments().length %> Comments
             </div>
         </td>
         <td class="age" valign='top'><%= model.days_ago() %></td>

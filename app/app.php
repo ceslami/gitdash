@@ -1,5 +1,5 @@
 <?php
-    $is_production = true;
+    $is_production = false;
 
     if($is_production) {
         include 'src/prod/config.php';
@@ -46,7 +46,7 @@
             if(count($pulls)) {
                 foreach($pulls as $pr) {
                     $pr_data = get_data('https://api.github.com/repos/'.$org.'/'.$repo->name.'/pulls/'.$pr->number);
-                    $pr_data->review_comments_list = get_data('https://api.github.com'.str_replace('{number}', $pr->number, $pr->review_comment_url));
+                    $pr_data->review_comments_list = get_data($pr_data->_links->review_comments->href);
                     $pr_data->comments_list = get_data($pr->comments_url);
 
                     $pull_requests[] = $pr_data;
