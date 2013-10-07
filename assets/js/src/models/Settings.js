@@ -19,7 +19,31 @@ var Settings = Backbone.Model.extend({
                     }
                 ]
             }),
-            filters = new Filters([isOffMaster]);
+            hasApproval = new Filter({
+                name: 'Ship It',
+                description: 'Ready to merge',
+                bgColor: 'blue',
+                conditions: [
+                    {
+                        property: 'hasApproval',
+                        comparator: '===',
+                        value: 'true'
+                    }
+                ]
+            }),
+            isUncommented = new Filter({
+                name: 'New',
+                description: 'Has not been commented on yet',
+                bgColor: 'green',
+                conditions: [
+                    {
+                        property: 'isUncommented',
+                        comparator: '===',
+                        value: 'true'
+                    }
+                ]
+            }),
+            filters = new Filters([isOffMaster, hasApproval, isUncommented]);
 
         this.set({
             filters: filters

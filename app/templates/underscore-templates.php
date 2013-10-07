@@ -43,8 +43,6 @@
         <td class="meta" valign='top'>
             <div>
                 <span class="title"><%= title %></span>
-                <%= is_new_badge() %>
-                <%= has_approval_badge() %>
                 <%= print_badges() %>
             </div>
             <div class="stats">
