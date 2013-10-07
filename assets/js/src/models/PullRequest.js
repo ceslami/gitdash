@@ -8,7 +8,6 @@ var PullRequest = Backbone.Model.extend({
 
         if(asInt) return daysAgo;
 
-
         return daysAgo
                 ? daysAgo+' '+unit+' ago'
                 : '<24 hours ago';
