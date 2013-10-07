@@ -6,7 +6,7 @@ var PullRequest = Backbone.Model.extend({
             daysAgo = Math.floor(datediff/(1000*60*60*24)),
             unit = daysAgo === 1 ? 'day' : 'days';
 
-        if(asInt) return daysAgo;
+        if (asInt) return daysAgo;
 
         return daysAgo
                 ? daysAgo+' '+unit+' ago'
@@ -18,7 +18,9 @@ var PullRequest = Backbone.Model.extend({
                 contains = 0;
 
             _.each(words, function(word, i) {
-                contains += el.body.indexOf(word.trim()) > -1 ? 1 : 0
+                if (!_.isUndefined(el.body)) {
+                    contains += el.body.indexOf(word.trim()) > -1 ? 1 : 0
+                }
             })
             return contains;
         });
@@ -26,12 +28,20 @@ var PullRequest = Backbone.Model.extend({
         return approvals.length > 0;
     },
     isUncommented: function() {
-        return this.allComments() < 1;
+        return this.allComments().length < 1;
     },
     isOffMaster: function() {
         return this.get('base').ref == 'master';
     },
     allComments: function() {
-        return this.get('comments_list').concat(this.get('review_comments_list'));
+        var all_comments = [];
+
+        if(!_.isUndefined(this.get('comments_list'))) {
+            all_comments = all_comments.concat(this.get('comments_list'));
+        } else if(!_.isUndefined(this.get('review_comments_list'))) {
+            all_comments = all_comments.concat(this.get('review_comments_list'));
+        }
+
+        return all_comments;
     }
 });

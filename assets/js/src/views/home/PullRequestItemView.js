@@ -25,18 +25,6 @@ var PullRequestItemView = Marionette.ItemView.extend({
                 });
             }
         },
-        is_off_master_badge: function() {
-            if(this.model.isOffMaster()) {
-                return this.print_badge({
-                    style: {
-                        background: 'red',
-                        text: 'white-text'
-                    },
-                    title: 'Branched off of master',
-                    text: '<span class="icon icon-code-fork"></span> Master'
-                });
-            }
-        },
         is_new_badge: function() {
             if(this.model.isUncommented()) {
                 return this.print_badge({
@@ -51,6 +39,37 @@ var PullRequestItemView = Marionette.ItemView.extend({
         },
         print_badge: function(options) {
             return '<span title="'+options.title+'" class="badge '+options.style.background+' '+options.style.text+'">'+options.text+'</span>';
+        },
+        print_badges: function() {
+            var self = this,
+                filters = App.settings.get('filters').models,
+                badges = "";
+
+            _.each(filters, function(filter, i) {
+
+                // Find out if any of the conditions have failed...
+                var failed = _.reduce(filter.get('conditions'), function(memo, el) {
+                    var condition = (typeof self.model[el.property] === 'function')
+                        ? eval('self.model["'+el.property+'"]()'+el.comparator+el.value)
+                        : eval('self.model.get("'+el.property+'")'+el.comparator+el.value);
+
+                    return condition ? memo : ++memo;
+                }, 0);
+
+                // ...then print a badge if none did.
+                if (!failed) {
+                    badges += self.print_badge({
+                        style: {
+                            background: filter.get('bgColor'),
+                            text: 'white-text'
+                        },
+                        title: filter.get('description'),
+                        text: filter.get('name')
+                    });
+                }
+            });
+
+            return badges;
         }
     },
 

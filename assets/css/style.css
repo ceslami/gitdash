@@ -202,31 +202,35 @@
     padding:0 0 12px;
     border-bottom:1px solid #e5e5e5
 }
-#settings form.settings {
+#settings .settings {
+    float:left;
+    width:50%;
+}
+#settings form {
     margin:0 10px;
 }
-#settings form.settings fieldset {
+#settings form fieldset {
     display:block;
     margin:0 0 20px;
     padding:0;
     border:none;
 }
-#settings form.settings fieldset label {
+#settings form fieldset label {
     float:left;
     width:20%;
     min-width:200px;
     margin:0 20px 0 0;
 }
-#settings form.settings fieldset label .title {
+#settings form fieldset label .title {
     margin:9px 0 0;
     font-size:14px;
 }
-#settings form.settings fieldset label .description {
+#settings form fieldset label .description {
     font-size:12px;
     margin:10px 15px 0 0;
     color:#666;
 }
-#settings form.settings fieldset input {
+#settings form fieldset input {
     float:left;
     width:200px;
     padding:5px 8px;
@@ -234,15 +238,15 @@
     border-radius:2px;
     font-size:14px
 }
-#settings form.settings fieldset input[type=number] {
+#settings form fieldset input[type=number] {
     width:60px;
 }
-#settings form.settings fieldset select {
+#settings form fieldset select {
     margin:8px 0 0;
     display:block;
     float:left;
 }
-#settings form.settings fieldset .days {
+#settings form fieldset .days {
     display:
     inline-block;
     margin:8px 0 0 10px;
@@ -287,6 +291,10 @@
 }
 #settings .saved-successfully .icon-ok {
     color:#37C737;
+}
+
+#settings .filters {
+    width:50%;float:left;
 }
 
 /* FOOTER ********************************************************************/

@@ -45,7 +45,7 @@
                 <span class="title"><%= title %></span>
                 <%= is_new_badge() %>
                 <%= has_approval_badge() %>
-                <%= is_off_master_badge() %>
+                <%= print_badges() %>
             </div>
             <div class="stats">
                 <%= commits %> commits &nbsp;&middot;&nbsp; <%= changed_files %> files &nbsp;&middot;&nbsp; <%= model.allComments().length %> Comments
@@ -89,71 +89,76 @@
 <script type="text/template" id="settings">
     <div id="settings">
         <div class="header">Settings</div>
-        <form class="settings">
-            <fieldset>
-                <label>
-                    <div class="title">Approval Words:</div>
-                    <div class="description">
-                        You can specify the words or phrases that your
-                        team uses in comments to mark a pull request as
-                        ready to merge. This field is case-sensitive, and you
-                        can separate terms with a comma.
-                    </div>
-                </label>
-                <input type="text" class="approval-words" value="<%= approval_words %>">
-                <div style="clear:both"></div>
-            </fieldset>
-            <fieldset>
-                <label>
-                    <div class="title">Freshness Score Threshold:</div>
-                    <div class="description">
-                        The calculation of the Freshness Score depends on
-                        how old pull requests are. By default, we designate
-                        3 day old pull requests as stale. Depending on your
-                        code review process, you may want to adjust this.
-                    </div>
-                </label>
-                <input type="number" min="1" max="10" class="freshness-threshold" value="<%= freshness_threshold %>"> <span class="days">days</span>
-            </fieldset>
-            <fieldset>
-                <label>
-                    <div class="title">Refresh Interval:</div>
-                    <div class="description">
-                        How often do you want the Dashboard to refresh its
-                        data? Remember, setting this value too low might
-                        put you over your Github API request limit, depending
-                        on how many repos and pull requests you generate.
-                    </div>
-                </label>
-                <select class="refresh-interval">
-                    <option value="1" <%= refresh_interval == 1 ? 'selected' : '' %>>1 minute</option>
-                    <option value="5" <%= refresh_interval == 5 ? 'selected' : '' %>>5 minutes</option>
-                    <option value="10" <%= refresh_interval == 10 ? 'selected' : '' %>>10 minutes</options>
-                    <option value="20" <%= refresh_interval == 20 ? 'selected' : '' %>>20 minutes</options>
-                    <option value="30" <%= refresh_interval == 30 ? 'selected' : '' %>>30 minutes</options>
-                    <option value="60" <%= refresh_interval == 60 ? 'selected' : '' %>>1 hour</options>
-                </select>
-            </fieldset>
-            <fieldset>
-                <label>
-                    <div class="title">Organization:</div>
-                    <div class="description">
-                        Select the organization that you would like to
-                        display data for.
-                    </div>
-                </label>
-                <select class="organization">
-                    <%= organization_list() %>
-                </select>
-            </fieldset>
-        </form>
-        <div style="margin:10px">
-            <button class="save">Save Settings</button>
-            <div class="saved-successfully">
-                <span class="icon-ok"></span> Saved successfully.
+        <div class="settings">
+            <form>
+                <fieldset>
+                    <label>
+                        <div class="title">Approval Words:</div>
+                        <div class="description">
+                            You can specify the words or phrases that your
+                            team uses in comments to mark a pull request as
+                            ready to merge. This field is case-sensitive, and you
+                            can separate terms with a comma.
+                        </div>
+                    </label>
+                    <input type="text" class="approval-words" value="<%= approval_words %>">
+                    <div style="clear:both"></div>
+                </fieldset>
+                <fieldset>
+                    <label>
+                        <div class="title">Freshness Score Threshold:</div>
+                        <div class="description">
+                            The calculation of the Freshness Score depends on
+                            how old pull requests are. By default, we designate
+                            3 day old pull requests as stale. Depending on your
+                            code review process, you may want to adjust this.
+                        </div>
+                    </label>
+                    <input type="number" min="1" max="10" class="freshness-threshold" value="<%= freshness_threshold %>"> <span class="days">days</span>
+                </fieldset>
+                <fieldset>
+                    <label>
+                        <div class="title">Refresh Interval:</div>
+                        <div class="description">
+                            How often do you want the Dashboard to refresh its
+                            data? Remember, setting this value too low might
+                            put you over your Github API request limit, depending
+                            on how many repos and pull requests you generate.
+                        </div>
+                    </label>
+                    <select class="refresh-interval">
+                        <option value="1" <%= refresh_interval == 1 ? 'selected' : '' %>>1 minute</option>
+                        <option value="5" <%= refresh_interval == 5 ? 'selected' : '' %>>5 minutes</option>
+                        <option value="10" <%= refresh_interval == 10 ? 'selected' : '' %>>10 minutes</options>
+                        <option value="20" <%= refresh_interval == 20 ? 'selected' : '' %>>20 minutes</options>
+                        <option value="30" <%= refresh_interval == 30 ? 'selected' : '' %>>30 minutes</options>
+                        <option value="60" <%= refresh_interval == 60 ? 'selected' : '' %>>1 hour</options>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <label>
+                        <div class="title">Organization:</div>
+                        <div class="description">
+                            Select the organization that you would like to
+                            display data for.
+                        </div>
+                    </label>
+                    <select class="organization">
+                        <%= organization_list() %>
+                    </select>
+                </fieldset>
+            </form>
+            <div style="margin:10px">
+                <button class="save">Save Settings</button>
+                <div class="saved-successfully">
+                    <span class="icon-ok"></span> Saved successfully.
+                </div>
             </div>
         </div>
-
+        <div class="filters">
+            asd
+        </div>
+        <div style="clear:both"></div>
     </div>
 </script>
 <script type="text/template" id="commit-graph">

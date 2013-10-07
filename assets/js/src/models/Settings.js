@@ -6,6 +6,24 @@ var Settings = Backbone.Model.extend({
             refresh_interval: localStorage.getItem('settings.refresh_interval') || 10,
             organization: localStorage.getItem('settings.organization') || 'Betterment'
         });
+
+        var isOffMaster = new Filter({
+                name: '<span class="icon icon-code-fork"></span> Master',
+                description: 'Branched off of master',
+                bgColor: 'red',
+                conditions: [
+                    {
+                        property: 'isOffMaster',
+                        comparator: '===',
+                        value: 'true'
+                    }
+                ]
+            }),
+            filters = new Filters([isOffMaster]);
+
+        this.set({
+            filters: filters
+        });
     },
     sync: function(method, model, options) {
         for(key in model.attributes) {
