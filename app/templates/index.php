@@ -21,7 +21,7 @@
         <script type="text/javascript">
             APP_URL = "<?php echo $config['app_url']; ?>";
         </script>
-        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+        <script type="text/javascript" src="/assets/js/vendor/d3.v3.min.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/local-storage.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery.min.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery-ui-custom.js"></script>
@@ -46,6 +46,9 @@
         <script type="text/javascript" src="/assets/js/src/views/home/HomeHeadsUpView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/home/HomeLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/common/FooterLayout.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/settings/FilterItemView.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/settings/FiltersView.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/settings/GeneralSettingsView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/settings/SettingsLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/home/CommitActivityGraphView.js"></script>
         <script type="text/javascript" src="/assets/js/src/Router.js"></script>
