@@ -31,6 +31,7 @@
         <script type="text/javascript" src="/assets/js/vendor/backbone.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/backbone.babysitter.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/backbone.wreqr.js"></script>
+        <script type="text/javascript" src="/assets/js/vendor/backbone.localStorage.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/marionette.js"></script>
 
         <script type="text/javascript" src="/assets/js/src/app.js"></script>

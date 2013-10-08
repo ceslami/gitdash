@@ -7,14 +7,21 @@ var SettingsLayout = Marionette.Layout.extend({
     },
 
     onShow: function() {
-        var generalSettingsView = new GeneralSettingsView({
-                model: App.settings
-            }),
-            filtersView = new FiltersView({
-                collection: App.settings.get('filters')
-            });
+        var self = this;
 
-        this.generalSettings.show(generalSettingsView);
-        this.filters.show(filtersView);
+        App.settings.fetch().done(function() {
+            App.settings.attributes = App.settings.get('0');
+
+            var filters = new Filters(App.settings.get('filters')),
+                generalSettingsView = new GeneralSettingsView({
+                    model: App.settings
+                }),
+                filtersView = new FiltersView({
+                    collection: filters
+                });
+
+            self.generalSettings.show(generalSettingsView);
+            self.filters.show(filtersView);
+        })
     }
 });

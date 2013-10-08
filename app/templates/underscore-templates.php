@@ -166,14 +166,19 @@
 </script>
 <script type="text/template" id="filter">
     <% var badgeSettings = model.getBadgeSettings(); %>
-    <div>
+    <div style="margin:0 0 10px">
         <span title="<%= badgeSettings.title %>" class="badge <%= badgeSettings.style.background %> <%= badgeSettings.style.text %>">
             <%= badgeSettings.text %>
         </span>
         <div>
-            <%= print_all_conditions() %>
             <select>
                 <%= properties_menu() %>
+            </select>
+            <select>
+                <%= operator_menu() %>
+            </select>
+            <select>
+                <%= value_menu() %>
             </select>
         </div>
     </div>
