@@ -161,17 +161,26 @@
 </script>
 <script type="text/template" id="settings-filters">
     <div class="heading">
-        <div class="title">Filters</div><div style="margin:10px 0" class="add-filter">add a filter</div>
+        <div class="title" style="margin:10px 0;">
+            <div style="float:left">Filters</div>
+            <button style="float:right" class="add-filter">add a filter</button>
+            <div style="clear:both"></div>
+        </div>
     </div>
     <table class="filters"></table>
 </script>
 <script type="text/template" id="filter">
     <% var badgeSettings = model.getBadgeSettings(); %>
     <div style="margin:0 0 10px">
-        <span title="<%= badgeSettings.title %>" class="badge <%= badgeSettings.style.background %> <%= badgeSettings.style.text %>">
-            <%= badgeSettings.text %>
-        </span>
-        <div>
+        <div style="float:left;width:35%">
+            <input style="display:block;width:95%" class="name" value="<%= name %>"/>
+            <input style="display:block;width:95%" class="description" value="<%= description %>"/>
+            <input type="text" class="color-picker">
+            <span title="<%= badgeSettings.title %>" class="badge <%= badgeSettings.style.text %>" style="background:<%= badgeSettings.style.background %>">
+                <%= badgeSettings.text %>
+            </span>
+        </div>
+        <div style="float:left;width:65%">
             <select class="property">
                 <%= properties_menu() %>
             </select>
@@ -182,6 +191,7 @@
                 <%= value_menu() %>
             </select>
         </div>
+        <div style="clear:both"></div>
     </div>
 </script>
 <script type="text/template" id="commit-graph">

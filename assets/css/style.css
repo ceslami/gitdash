@@ -296,6 +296,22 @@
 #settings #filters {
     width:50%;float:left;
 }
+#settings #filters table.filters {
+    width:100%;
+}
+#settings #filters table.filters input {
+    float: left;
+    padding: 2px 8px;
+    border: none;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+}
+#settings #filters table.filters input:disabled {
+    float: left;
+    padding: 2px 0;
+    border: none;
+    font-size: 14px;
+}
 
 /* FOOTER ********************************************************************/
 

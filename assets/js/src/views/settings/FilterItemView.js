@@ -9,17 +9,54 @@ var FilterItemView = Marionette.ItemView.extend({
     },
 
     events: {
-        'change select': 'saveFilters'
+        'change select': 'saveFilters',
+        'keyup input': 'saveFilters',
+        'click input': 'makeEditable',
+        'blur input': 'saveFilters'
+    },
+
+    onShow: function() {
+        var self = this;
+
+        this.$(".color-picker").spectrum({
+            color: "#"+this.model.get('bgColor'),
+            change: function(color) {
+                self.model.set({
+                    bgColor: color.toHexString()
+                })
+            }
+        });
     },
 
     saveFilters: function() {
+        console.log({
+            name: this.$('.name').val(),
+            description: this.$('.description').val(),
+            bgColor: this.$('.bgColor').val(),
+            conditions: [{
+                property: this.$('.property').val(),
+                operator: this.$('.operator').val(),
+                value: this.$('.value').val()
+            }]
+        })
         this.model.set({
+            name: this.$('.name').val(),
+            description: this.$('.description').val(),
+            bgColor: this.$('.bgColor').val(),
             conditions: [{
                 property: this.$('.property').val(),
                 operator: this.$('.operator').val(),
                 value: this.$('.value').val()
             }]
         });
+    },
+
+    makeEditable: function(e) {
+        var input = $(e.currentTarget);
+
+        if(input.is(':disabled') && !input.is(':focus')) {
+            input.removeAttr('disabled');
+        }
     },
 
     templateHelpers: {

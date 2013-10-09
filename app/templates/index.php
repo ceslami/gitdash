@@ -2,6 +2,7 @@
     <head>
         <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
         <link href='/assets/css/jquery.easy-pie-chart.css' rel='stylesheet' type='text/css'>
+        <link href="/assets/css/colorpicker.css" rel="stylesheet" type="text/css">
         <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
         <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
     </head>
@@ -26,6 +27,7 @@
         <script type="text/javascript" src="/assets/js/vendor/jquery.min.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery-ui-custom.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery.easy-pie-chart.js"></script>
+        <script type="text/javascript" src="/assets/js/vendor/jquery.colorpicker.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/mustache.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/underscore.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/backbone.js"></script>

@@ -14,7 +14,7 @@ var PullRequestItemView = Marionette.ItemView.extend({
 
     templateHelpers: {
         print_badge: function(options) {
-            return '<span title="'+options.title+'" class="badge '+options.style.background+' '+options.style.text+'">'+options.text+'</span>';
+            return '<span title="'+options.title+'" class="badge '+options.style.text+'" style="background:'+options.style.background+'">'+options.text+'</span>';
         },
         print_badges: function() {
             var self = this,
