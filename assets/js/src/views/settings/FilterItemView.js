@@ -20,10 +20,14 @@ var FilterItemView = Marionette.ItemView.extend({
 
         this.$(".color-picker").spectrum({
             color: "#"+this.model.get('bgColor'),
+            move: function(color) {
+                self.$('.badge').css('background', color.toHexString());
+            },
             change: function(color) {
+                self.$('.badge').css('background', color.toHexString());
                 self.model.set({
                     bgColor: color.toHexString()
-                })
+                });
             }
         });
     },

@@ -175,12 +175,15 @@
         <div style="float:left;width:35%">
             <input style="display:block;width:95%" class="name" value="<%= name %>"/>
             <input style="display:block;width:95%" class="description" value="<%= description %>"/>
+
             <input type="text" class="color-picker">
+
             <span title="<%= badgeSettings.title %>" class="badge <%= badgeSettings.style.text %>" style="background:<%= badgeSettings.style.background %>">
                 <%= badgeSettings.text %>
             </span>
         </div>
         <div style="float:left;width:65%">
+            <div style="font-size:10px;text-transform:uppercase;padding:6px 0">Conditions</div>
             <select class="property">
                 <%= properties_menu() %>
             </select>
