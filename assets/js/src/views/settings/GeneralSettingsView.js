@@ -2,8 +2,7 @@ var GeneralSettingsView = Marionette.ItemView.extend({
     template: '#settings-general',
 
     events: {
-        "keydown .freshness-threshold": "restrictNumeric",
-        "click .save": "saveSettings"
+        "keydown .freshness-threshold": "restrictNumeric"
     },
 
     templateHelpers: {
@@ -25,16 +24,5 @@ var GeneralSettingsView = Marionette.ItemView.extend({
         if (!_.contains(a, e.which)) {
             e.preventDefault();
         }
-    },
-
-    saveSettings: function(e) {
-        App.settings.save({
-            approval_words: $('input.approval-words').val(),
-            freshness_threshold: $('input.freshness-threshold').val(),
-            refresh_interval: parseInt($('select.refresh-interval').val()),
-            organization: $('select.organization').val()
-        });
-
-        $('.saved-successfully').fadeIn(200).delay(1500).fadeOut(200);
     }
 });

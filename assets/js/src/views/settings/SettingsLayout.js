@@ -6,22 +6,32 @@ var SettingsLayout = Marionette.Layout.extend({
         filters: '#filters'
     },
 
+    events: {
+        "click .save": "saveSettings"
+    },
+
     onShow: function() {
-        var self = this;
+        var generalSettingsView = new GeneralSettingsView({
+                model: App.settings
+            }),
+            filtersView = new FiltersView({
+                collection: new Filters(App.settings.get('filters'))
+            });
 
-        App.settings.fetch().done(function() {
-            App.settings.attributes = App.settings.get('0');
+        this.generalSettings.show(generalSettingsView);
+        this.filters.show(filtersView);
 
-            var filters = new Filters(App.settings.get('filters')),
-                generalSettingsView = new GeneralSettingsView({
-                    model: App.settings
-                }),
-                filtersView = new FiltersView({
-                    collection: filters
-                });
+    },
 
-            self.generalSettings.show(generalSettingsView);
-            self.filters.show(filtersView);
-        })
+    saveSettings: function(e) {
+        App.settings.save({
+            approval_words: $('input.approval-words').val(),
+            freshness_threshold: $('input.freshness-threshold').val(),
+            refresh_interval: parseInt($('select.refresh-interval').val()),
+            organization: $('select.organization').val(),
+            filters: this.filters.currentView.collection.models
+        });
+
+        $('.saved-successfully').fadeIn(200).delay(1500).fadeOut(200);
     }
 });

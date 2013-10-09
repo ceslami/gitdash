@@ -1,4 +1,7 @@
 var Settings = Backbone.Model.extend({
-    localStorage: new Backbone.LocalStorage("settings")
+    localStorage: new Backbone.LocalStorage("settings-asd"),
+    initialize: function() {
+
+    }
 });
 

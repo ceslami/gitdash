@@ -90,6 +90,12 @@
         <div class="settings"></div>
         <div id="filters"></div>
         <div style="clear:both"></div>
+        <div style="margin:10px">
+            <button class="save">Save Settings</button>
+            <div class="saved-successfully">
+                <span class="icon-ok"></span> Saved successfully.
+            </div>
+        </div>
     </div>
 </script>
 <script type="text/template" id="settings-general">
@@ -151,16 +157,11 @@
             </select>
         </fieldset>
     </form>
-    <div style="margin:10px">
-        <button class="save">Save Settings</button>
-        <div class="saved-successfully">
-            <span class="icon-ok"></span> Saved successfully.
-        </div>
-    </div>
+
 </script>
 <script type="text/template" id="settings-filters">
     <div class="heading">
-        <div class="title">Filters</div>
+        <div class="title">Filters</div><div style="margin:10px 0" class="add-filter">add a filter</div>
     </div>
     <table class="filters"></table>
 </script>
@@ -171,13 +172,13 @@
             <%= badgeSettings.text %>
         </span>
         <div>
-            <select>
+            <select class="property">
                 <%= properties_menu() %>
             </select>
-            <select>
+            <select class="operator">
                 <%= operator_menu() %>
             </select>
-            <select>
+            <select class="value">
                 <%= value_menu() %>
             </select>
         </div>

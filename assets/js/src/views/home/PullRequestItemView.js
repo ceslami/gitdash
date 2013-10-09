@@ -18,9 +18,9 @@ var PullRequestItemView = Marionette.ItemView.extend({
         },
         print_badges: function() {
             var self = this,
-                filters = App.settings.get('filters').models;
+                filters = new Filters(App.settings.get('filters'));
 
-            return _.reduce(filters, function(memo, filter) {
+            return _.reduce(filters.models, function(memo, filter) {
                 if (filter.test(self.model)) {
                     memo += self.print_badge(filter.getBadgeSettings());
                 }

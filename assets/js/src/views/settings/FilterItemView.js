@@ -8,6 +8,20 @@ var FilterItemView = Marionette.ItemView.extend({
         }, this.templateHelpers);
     },
 
+    events: {
+        'change select': 'saveFilters'
+    },
+
+    saveFilters: function() {
+        this.model.set({
+            conditions: [{
+                property: this.$('.property').val(),
+                operator: this.$('.operator').val(),
+                value: this.$('.value').val()
+            }]
+        });
+    },
+
     templateHelpers: {
         print_all_conditions: function() {
             return _.reduce(this.model.get('conditions'), function(memo, el) {
@@ -39,29 +53,31 @@ var FilterItemView = Marionette.ItemView.extend({
                 unique_methods = _.difference(methods, _.keys(Backbone.Model.prototype)),
 
                 methods_list = _.reduce(unique_methods, function(memo, el) {
-                    console.log(this.model.get('conditions').property);
-                    console.log(el)
                     var isSelected = el == this.model.get('conditions')[0].property ? 'selected' : '';
                     return memo += "<option "+isSelected+">"+el+"</option>";
                 }, "<optgroup label='Methods'></optgroup>", this),
-                attributes_list = _.reduce(attributes, function(memo, el) {
-                    var isSelected = el == this.model.get('conditions')[0].property ? 'selected' : '';
-                    return memo += "<option "+isSelected+">"+el+"</option>";
+                attributes_list = _.reduce(_.pairs(attributes), function(memo, el) {
+                    var key = el[0],
+                        value = el[1],
+                        isSelected = key == this.model.get('conditions')[0].property ? 'selected' : '';
+                    return memo += "<option "+isSelected+" value='"+key+"'>"+value+"</option>";
                 }, "<optgroup label='Pull Request Attributes'></optgroup>", this);
 
             return methods_list+attributes_list;
         },
         operator_menu: function() {
             var operators = {
-                'equals': '===',
-                'greater than': '>',
-                'less than': '<',
+                '===': 'equals',
+                '>': 'greater than',
+                '<': 'less than',
                 'contains': 'contains'
             };
 
-            return _.reduce(operators, function(memo, el) {
-                var isSelected = el == this.model.get('conditions')[0].operator ? 'selected' : '';
-                return memo += "<option "+isSelected+">"+el+"</option>";
+            return _.reduce(_.pairs(operators), function(memo, el) {
+                var key = el[0],
+                    value = el[1],
+                    isSelected = value == this.model.get('conditions')[0].operator ? 'selected' : '';
+                return memo += "<option "+isSelected+" value='"+key+"'>"+value+"</option>";
             }, "<optgroup label='Pull Request Attributes'></optgroup>", this);
         },
         value_menu: function(property) {
