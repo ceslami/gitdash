@@ -12,7 +12,8 @@ var FilterItemView = Marionette.ItemView.extend({
         'change select': 'saveFilters',
         'keyup input': 'saveFilters',
         'click input': 'makeEditable',
-        'blur input': 'saveFilters'
+        'blur input': 'saveFilters',
+        'click .delete': 'destroy'
     },
 
     onShow: function() {
@@ -28,21 +29,13 @@ var FilterItemView = Marionette.ItemView.extend({
                 self.model.set({
                     bgColor: color.toHexString()
                 });
+                console.log(self.model)
             }
         });
     },
 
     saveFilters: function() {
-        console.log({
-            name: this.$('.name').val(),
-            description: this.$('.description').val(),
-            bgColor: this.$('.bgColor').val(),
-            conditions: [{
-                property: this.$('.property').val(),
-                operator: this.$('.operator').val(),
-                value: this.$('.value').val()
-            }]
-        })
+        this.$('.badge').text(this.$('.name').val())
         this.model.set({
             name: this.$('.name').val(),
             description: this.$('.description').val(),
@@ -61,6 +54,14 @@ var FilterItemView = Marionette.ItemView.extend({
         if(input.is(':disabled') && !input.is(':focus')) {
             input.removeAttr('disabled');
         }
+    },
+
+    destroy: function() {
+        var self = this;
+
+        this.$el.fadeOut(300, function() {
+            self.model.destroy();
+        });
     },
 
     templateHelpers: {

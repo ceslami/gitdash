@@ -12,7 +12,7 @@ var FiltersView = Marionette.CompositeView.extend({
         this.collection.add(new Filter({
             name: this.randomString(4, 'YSMD')+' '+this.randomString(2, 'AP'),
             description: 'Ready to merge',
-            bgColor: _.sample(['red, green, blue'], 1),
+            bgColor: '#00ff00',
             conditions: [
                 {
                     property: 'hasApproval',
@@ -23,6 +23,7 @@ var FiltersView = Marionette.CompositeView.extend({
         }));
         console.log(this.collection)
     },
+
     randomString: function(len, charSet) {
         charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var randomString = '';

@@ -174,7 +174,7 @@
     <div style="margin:0 0 10px">
         <div style="float:left;width:35%">
             <input style="display:block;width:95%" class="name" value="<%= name %>"/>
-            <input style="display:block;width:95%" class="description" value="<%= description %>"/>
+            <input style="display:block;width:95%;font-weight:300" class="description" value="<%= description %>"/>
 
             <input type="text" class="color-picker">
 
@@ -182,8 +182,8 @@
                 <%= badgeSettings.text %>
             </span>
         </div>
-        <div style="float:left;width:65%">
-            <div style="font-size:10px;text-transform:uppercase;padding:6px 0">Conditions</div>
+        <div style="float:left;width:55%">
+            <div style="font-size:10px;text-transform:uppercase;padding:4px 0 6px">Conditions</div>
             <select class="property">
                 <%= properties_menu() %>
             </select>
@@ -194,7 +194,11 @@
                 <%= value_menu() %>
             </select>
         </div>
+        <div style="float:left;width:10%;">
+            <button class="delete">Delete Filter</button>
+        </div>
         <div style="clear:both"></div>
+
     </div>
 </script>
 <script type="text/template" id="commit-graph">

@@ -301,16 +301,25 @@
 }
 #settings #filters table.filters input {
     float: left;
-    padding: 2px 8px;
+    padding: 2px 0;
     border: none;
     font-size: 14px;
     border-bottom: 1px solid #ccc;
+    -webkit-transition: border  linear .5s;
+    -moz-transition: border  linear .5s;
+    -o-transition: border linear .5s;
+    transition: border linear .5s;
 }
 #settings #filters table.filters input:disabled {
     float: left;
     padding: 2px 0;
     border: none;
     font-size: 14px;
+}
+#settings #filters table.filters input:focus {
+    box-shadow:none;
+    outline: 0 none;
+    border-bottom:1px solid #4bf;
 }
 
 /* FOOTER ********************************************************************/
