@@ -3,9 +3,7 @@ var FilterItemView = Marionette.ItemView.extend({
     tagName: 'tbody',
 
     initialize: function() {
-        this.templateHelpers = _.extend({
-            model: this.model
-        }, this.templateHelpers);
+        this.templateHelpers = _.extend(this, this.templateHelpers);
     },
 
     events: {
@@ -30,6 +28,9 @@ var FilterItemView = Marionette.ItemView.extend({
                     bgColor: color.toHexString()
                 });
                 console.log(self.model)
+            },
+            hide: function(color) {
+                self.$('.badge').css('background', color.toHexString());
             }
         });
     },
@@ -46,6 +47,16 @@ var FilterItemView = Marionette.ItemView.extend({
                 value: this.$('.value').val()
             }]
         });
+        console.log({
+            name: this.$('.name').val(),
+            description: this.$('.description').val(),
+            bgColor: this.$('.bgColor').val(),
+            conditions: [{
+                property: this.$('.property').val(),
+                operator: this.$('.operator').val(),
+                value: this.$('.value').val()
+            }]
+        })
     },
 
     makeEditable: function(e) {
@@ -76,21 +87,7 @@ var FilterItemView = Marionette.ItemView.extend({
         properties_menu: function() {
             var pr = App.collections.pull_requests.at(0),
                 // attributes = _.keys(pr.attributes),
-                attributes = {
-                    'created_at': 'Created Date',
-                    'updated_at': 'Last Updated',
-                    'title': 'Title',
-                    'body': 'Description',
-                    'user.login': 'Submitter',
-                    'state': 'State',
-                    'repo.name': 'Repository Name',
-                    'base.ref': 'Branched Off',
-                    'mergeable': 'Auto-mergable',
-                    'comments': 'Comments',
-                    'additions': 'Additions',
-                    'deletions': 'Deletions',
-                    'changed_files': 'Changed Files'
-                },
+                attributes = this.filter_attributes,
                 methods = _.keys(_.omit(pr.__proto__, ['constructor', '__proto__'])),
                 unique_methods = _.difference(methods, _.keys(Backbone.Model.prototype)),
 
@@ -98,11 +95,9 @@ var FilterItemView = Marionette.ItemView.extend({
                     var isSelected = el == this.model.get('conditions')[0].property ? 'selected' : '';
                     return memo += "<option "+isSelected+">"+el+"</option>";
                 }, "<optgroup label='Methods'></optgroup>", this),
-                attributes_list = _.reduce(_.pairs(attributes), function(memo, el) {
-                    var key = el[0],
-                        value = el[1],
-                        isSelected = key == this.model.get('conditions')[0].property ? 'selected' : '';
-                    return memo += "<option "+isSelected+" value='"+key+"'>"+value+"</option>";
+                attributes_list = _.reduce(attributes, function(memo, el) {
+                    var isSelected = el.name == this.model.get('conditions')[0].property ? 'selected' : '';
+                    return memo += "<option "+isSelected+" value='"+el.name+"'>"+el.description+"</option>";
                 }, "<optgroup label='Pull Request Attributes'></optgroup>", this);
 
             return methods_list+attributes_list;
@@ -116,25 +111,97 @@ var FilterItemView = Marionette.ItemView.extend({
             };
 
             return _.reduce(_.pairs(operators), function(memo, el) {
+                console.log(el)
                 var key = el[0],
                     value = el[1],
-                    isSelected = value == this.model.get('conditions')[0].operator ? 'selected' : '';
+                    isSelected = key == this.model.get('conditions')[0].operator ? 'selected' : '';
                 return memo += "<option "+isSelected+" value='"+key+"'>"+value+"</option>";
-            }, "<optgroup label='Pull Request Attributes'></optgroup>", this);
+            }, "<optgroup label='Operators'></optgroup>", this);
         },
         value_menu: function(property) {
-            var type = 'boolean';
-                // property.type;
+            var property = this.model.get('conditions')[0].property,
+                attribute = _.first(_.where(this.filter_attributes, {
+                    name: property
+                }));
 
-            if(type === 'boolean') {
+            if(!_.isUndefined(attribute) && attribute.input === 'text') {
+                return "<input class='value' type='text' value='"+this.model.get('conditions')[0].value+"' style='float:none'/>";
+            } else {
                 return _.reduce({
                     'true': 'true',
                     'false': 'false'
                 }, function(memo, el) {
                     var isSelected = el == this.model.get('conditions')[0].value ? 'selected' : '';
                     return memo += "<option "+isSelected+">"+el+"</option>";
-                }, "<optgroup label='Pull Request Attributes'></optgroup>", this);
+                }, "<select class='value'>", this)+'</select>';
             }
         }
-    }
+    },
+    filter_attributes: [
+        {
+            name: 'created_at',
+            description: 'Created Date',
+            input: 'date'
+        },
+        {
+            name: 'updated_at',
+            description: 'Last Updated',
+            input: 'date'
+        },
+        {
+            name: 'title',
+            description: 'Title',
+            input: 'text'
+        },
+        {
+            name: 'body',
+            description: 'Description',
+            input: 'text'
+        },
+        {
+            name: 'user.login',
+            description: 'Submitter',
+            input: 'text'
+        },
+        {
+            name: 'state',
+            description: 'State',
+            input: 'text'
+        },
+        {
+           name: 'repo.name',
+           description: 'Repository Name',
+           input: 'text'
+        },
+        {
+            name: 'base.ref',
+            description: 'Branched Off',
+            input: 'text'
+        },
+        {
+            name: 'mergeable',
+            description: 'Auto-mergable',
+            input: 'boolean'
+        },
+        {
+            name: 'comments',
+            description: 'Comments',
+            input: 'text'
+        },
+        {
+            name: 'additions',
+            description: 'Additions',
+            input: 'text'
+        },
+        {
+            name: 'deletions',
+            description: 'Deletions',
+            input: 'text'
+        },
+        {
+            name: 'changed_files',
+            description: 'Changed Files',
+            input: 'text'
+        }
+    ]
 });

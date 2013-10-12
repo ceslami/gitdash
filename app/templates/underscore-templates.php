@@ -190,12 +190,12 @@
             <select class="operator">
                 <%= operator_menu() %>
             </select>
-            <select class="value">
+
                 <%= value_menu() %>
-            </select>
+
         </div>
         <div style="float:left;width:10%;">
-            <button class="delete">Delete Filter</button>
+            <button class="delete">Delete</button>
         </div>
         <div style="clear:both"></div>
 
