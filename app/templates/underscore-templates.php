@@ -174,15 +174,19 @@
     <div style="margin:0 0 10px">
         <div style="float:left;width:35%">
             <input style="display:block;width:95%" class="name" value="<%= name %>"/>
-            <input style="display:block;width:95%;font-weight:300" class="description" value="<%= description %>"/>
+            <input style="display:block;width:95%;font-weight:300;color:#666" class="description" value="<%= description %>"/>
 
             <input type="text" class="color-picker">
 
             <span title="<%= badgeSettings.title %>" class="badge <%= badgeSettings.style.text %>" style="background:<%= badgeSettings.style.background %>">
                 <%= badgeSettings.text %>
             </span>
+
+            <div class="delete" style="float:right;margin:5px 5% 0 0;color:#769AB8;font-size:12px;cursor:pointer">
+                <span class="icon-remove" style="margin-right:3px;"></span> <span style="text-decoration:underline">Delete</span>
+            </div>
         </div>
-        <div style="float:left;width:55%">
+        <div style="float:left;width:65%">
             <div style="font-size:10px;text-transform:uppercase;padding:4px 0 6px">Conditions</div>
             <select class="property">
                 <%= properties_menu() %>
@@ -190,13 +194,9 @@
             <select class="operator">
                 <%= operator_menu() %>
             </select>
-
-                <%= value_menu() %>
-
+            <%= value_menu() %>
         </div>
-        <div style="float:left;width:10%;">
-            <button class="delete">Delete</button>
-        </div>
+
         <div style="clear:both"></div>
 
     </div>

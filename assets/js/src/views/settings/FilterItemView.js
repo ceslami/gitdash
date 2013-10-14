@@ -126,6 +126,10 @@ var FilterItemView = Marionette.ItemView.extend({
 
             if(!_.isUndefined(attribute) && attribute.input === 'text') {
                 return "<input class='value' type='text' value='"+this.model.get('conditions')[0].value+"' style='float:none'/>";
+            } else if(!_.isUndefined(attribute) && attribute.input === 'range') {
+                return '<input type="number" class="value" name="points" min="1" max="1000000" value="'+this.model.get('conditions')[0].value+'" style="float:none">';
+            } else if(!_.isUndefined(attribute) && attribute.input === 'date') {
+                return '<input type="date" class="value" name="bday" value="'+this.model.get('conditions')[0].value+'" style="float:none">';
             } else {
                 return _.reduce({
                     'true': 'true',
@@ -191,17 +195,17 @@ var FilterItemView = Marionette.ItemView.extend({
         {
             name: 'additions',
             description: 'Additions',
-            input: 'text'
+            input: 'range'
         },
         {
             name: 'deletions',
             description: 'Deletions',
-            input: 'text'
+            input: 'range'
         },
         {
             name: 'changed_files',
             description: 'Changed Files',
-            input: 'text'
+            input: 'range'
         }
     ]
 });

@@ -1,5 +1,5 @@
 <?php
-    $is_production = true;
+    $is_production = false;
 
     if($is_production) {
         include 'src/prod/config.php';
