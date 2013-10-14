@@ -162,9 +162,12 @@
 <script type="text/template" id="settings-filters">
     <div class="heading">
         <div class="title" style="margin:10px 0;">
-            <div style="float:left">Filters</div>
+            <div style="float:left;font-size: 14px;">Filters</div>
             <button style="float:right" class="add-filter">add a filter</button>
             <div style="clear:both"></div>
+            <div style="font-size: 12px;margin: 4px 15px 0 0;color: #666;">
+                Add your own custom tags to pull requests.
+            </div>
         </div>
     </div>
     <table class="filters"></table>
@@ -173,8 +176,8 @@
     <% var badgeSettings = model.getBadgeSettings(); %>
     <div style="margin:0 0 10px">
         <div style="float:left;width:35%">
-            <input style="display:block;width:95%" class="name" value="<%= name %>"/>
-            <input style="display:block;width:95%;font-weight:300;color:#666" class="description" value="<%= description %>"/>
+            <input style="display:block;width:95%;font-size:12px" class="name" value="<%= name %>"/>
+            <input style="display:block;width:95%;font-size:12px;font-weight:300;color:#666" class="description" value="<%= description %>"/>
 
             <input type="text" class="color-picker">
 

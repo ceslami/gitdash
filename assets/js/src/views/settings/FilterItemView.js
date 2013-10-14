@@ -40,7 +40,7 @@ var FilterItemView = Marionette.ItemView.extend({
         this.model.set({
             name: this.$('.name').val(),
             description: this.$('.description').val(),
-            bgColor: this.$('.bgColor').val(),
+            bgColor: this.$('.color-picker').spectrum("get").toHexString(),
             conditions: [{
                 property: this.$('.property').val(),
                 operator: this.$('.operator').val(),
@@ -50,7 +50,7 @@ var FilterItemView = Marionette.ItemView.extend({
         console.log({
             name: this.$('.name').val(),
             description: this.$('.description').val(),
-            bgColor: this.$('.bgColor').val(),
+            bgColor: this.$('.color-picker').spectrum("get").toHexString(),
             conditions: [{
                 property: this.$('.property').val(),
                 operator: this.$('.operator').val(),
@@ -125,11 +125,11 @@ var FilterItemView = Marionette.ItemView.extend({
                 }));
 
             if(!_.isUndefined(attribute) && attribute.input === 'text') {
-                return "<input class='value' type='text' value='"+this.model.get('conditions')[0].value+"' style='float:none'/>";
+                return "<input class='value' style='font-size:12px;float:none' type='text' value='"+this.model.get('conditions')[0].value+"' />";
             } else if(!_.isUndefined(attribute) && attribute.input === 'range') {
-                return '<input type="number" class="value" name="points" min="1" max="1000000" value="'+this.model.get('conditions')[0].value+'" style="float:none">';
+                return '<input type="number" style="font-size:12px;float:none" class="value" name="points" min="1" max="1000000" value="'+this.model.get('conditions')[0].value+'">';
             } else if(!_.isUndefined(attribute) && attribute.input === 'date') {
-                return '<input type="date" class="value" name="bday" value="'+this.model.get('conditions')[0].value+'" style="float:none">';
+                return '<input type="date" style="font-size:12px;float:none" class="value" name="bday" value="'+this.model.get('conditions')[0].value+'">';
             } else {
                 return _.reduce({
                     'true': 'true',
