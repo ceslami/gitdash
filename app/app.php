@@ -1,5 +1,5 @@
 <?php
-    $is_production = false;
+    $is_production = true;
 
     if($is_production) {
         include 'src/prod/config.php';
@@ -10,7 +10,7 @@
     include 'src/init.php';
     include 'src/lib.php';
 
-    $auth_url = 'https://github.com/login/oauth/authorize?client_id='.$config['client_id'].'&redirect_uri='.$config['callback_url'].'scope=user,repo';
+    $auth_url = 'https://github.com/login/oauth/authorize?client_id='.$config['client_id'].'&redirect_uri='.$config['callback_url'].'&scope=user,repo';
 
     $app->get('/?', function() use ($auth_url, $app)  {
         if(isset($_COOKIE['access_token'])) {
@@ -19,9 +19,9 @@
         include 'templates/login.php';
     });
 
-    $app->get('/oauth_redirect/?', function() use ($app) {
+    $app->get('/oauth_redirect/?', function() use ($app, $config) {
         $code = $app->request()->params('code');
-        $token = isset($_COOKIE['access_token']) ? $_COOKIE['access_token'] : get_access_token($code);
+        $token = isset($_COOKIE['access_token']) ? $_COOKIE['access_token'] : get_access_token($code, $config);
 
         $app->redirect('/app');
     });
@@ -75,7 +75,7 @@
 
     $app->get('/app/?', function() use ($app, $config) {
         if(!isset($_COOKIE['access_token'])) {
-            $app->redirect('/app');
+            $app->redirect('/');
         }
         include 'templates/index.php';
     });
