@@ -60,7 +60,7 @@
 
     // Github API stuff
     // src: https://gist.github.com/technoweenie/419219
-    function get_access_token($code) {
+    function get_access_token($code, $config) {
         $response = array();
         $fields = array(
             'client_id' => $config['client_id'],
