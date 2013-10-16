@@ -5,6 +5,7 @@
         <link href="/assets/css/colorpicker.css" rel="stylesheet" type="text/css">
         <link href='//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
         <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/chosen.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <?php include 'analytics.php'; ?>
@@ -28,6 +29,7 @@
         <script type="text/javascript" src="/assets/js/vendor/jquery-ui-custom.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery.easy-pie-chart.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/jquery.colorpicker.js"></script>
+        <script type="text/javascript" src="/assets/js/vendor/chosen.jquery.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/mustache.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/underscore.js"></script>
         <script type="text/javascript" src="/assets/js/vendor/backbone.js"></script>

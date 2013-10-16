@@ -11,16 +11,12 @@ var SettingsLayout = Marionette.Layout.extend({
     },
 
     onShow: function() {
-        var generalSettingsView = new GeneralSettingsView({
-                model: App.settings
-            }),
-            filtersView = new FiltersView({
-                collection: new Filters(App.settings.get('filters'))
-            });
-
-        this.generalSettings.show(generalSettingsView);
-        this.filters.show(filtersView);
-
+        this.generalSettings.show(new GeneralSettingsView({
+            model: App.settings
+        }));
+        this.filters.show(new FiltersView({
+            collection: new Filters(App.settings.get('filters'))
+        }));
     },
 
     saveSettings: function(e) {

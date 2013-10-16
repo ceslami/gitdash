@@ -2,19 +2,18 @@ var FilterItemView = Marionette.ItemView.extend({
     template: "#filter",
     tagName: 'tbody',
 
+    events: {
+        'change select': 'saveConditions',
+        'keyup input': 'saveFilter',
+        'blur input': 'saveFilter',
+        'click .delete': 'destroy'
+    },
+
     initialize: function() {
         this.templateHelpers = _.extend(this, this.templateHelpers);
     },
 
-    events: {
-        'change select': 'saveFilters',
-        'keyup input': 'saveFilters',
-        'click input': 'makeEditable',
-        'blur input': 'saveFilters',
-        'click .delete': 'destroy'
-    },
-
-    onShow: function() {
+    onRender: function() {
         var self = this;
 
         this.$(".color-picker").spectrum({
@@ -27,7 +26,6 @@ var FilterItemView = Marionette.ItemView.extend({
                 self.model.set({
                     bgColor: color.toHexString()
                 });
-                console.log(self.model)
             },
             hide: function(color) {
                 self.$('.badge').css('background', color.toHexString());
@@ -35,7 +33,7 @@ var FilterItemView = Marionette.ItemView.extend({
         });
     },
 
-    saveFilters: function() {
+    saveFilter: function() {
         this.$('.badge').text(this.$('.name').val())
         this.model.set({
             name: this.$('.name').val(),
@@ -59,31 +57,43 @@ var FilterItemView = Marionette.ItemView.extend({
         })
     },
 
-    makeEditable: function(e) {
-        var input = $(e.currentTarget);
+    saveConditions: function() {
+        var currentProperty = this.model.get('conditions')[0].property,
+            selectedProperty = this.$('.property').val();
 
-        if(input.is(':disabled') && !input.is(':focus')) {
-            input.removeAttr('disabled');
+        if(selectedProperty != currentProperty) {
+            var attribute = _.first(_.where(this.filter_attributes, {
+                name: this.$('.property').val()
+            })),
+            input_type = !_.isUndefined(attribute) ? attribute.input : null;
+
+            if (input_type == 'boolean') { value = true; }
+            if (input_type == 'text')    { value = '';   }
+            else                         { value = '0';  }
+
+            this.model.set({
+                conditions: [{
+                    property: this.$('.property').val(),
+                    operator: this.$('.operator').val(),
+                    value: value
+                }]
+            });
+            this.render();
         }
     },
 
     destroy: function() {
-        var self = this;
+        var self = this,
+            filterName = this.$('.name').val(),
+            message = "Are you sure you want to delete "+filterName+"?",
+            confirmDelete = confirm(message);
 
-        this.$el.fadeOut(300, function() {
-            self.model.destroy();
-        });
+        if(confirmDelete === true) {
+            this.$el.fadeOut(300, self.model.destroy);
+        }
     },
 
     templateHelpers: {
-        print_all_conditions: function() {
-            return _.reduce(this.model.get('conditions'), function(memo, el) {
-                return memo += this.print_condition(el);
-            }, "", this);
-        },
-        print_condition: function(el) {
-            return el.property + ' ' + el.operator + ' ' + el.value;
-        },
         properties_menu: function() {
             var pr = App.collections.pull_requests.at(0),
                 // attributes = _.keys(pr.attributes),
@@ -111,7 +121,6 @@ var FilterItemView = Marionette.ItemView.extend({
             };
 
             return _.reduce(_.pairs(operators), function(memo, el) {
-                console.log(el)
                 var key = el[0],
                     value = el[1],
                     isSelected = key == this.model.get('conditions')[0].operator ? 'selected' : '';

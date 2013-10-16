@@ -21,8 +21,7 @@ var HomePullRequestsView = Marionette.CompositeView.extend({
                     isFirstInRepo = self.collection.models[i].get('head').repo.name != self.collection.models[lastIndex].get('head').repo.name;
 
                 self.collection.models[i].set('showRepoName', isFirstInRepo || !i);
-            })
-            console.log(this.collection)
+            });
         }
     }
 });

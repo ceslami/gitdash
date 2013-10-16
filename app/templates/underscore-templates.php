@@ -123,7 +123,9 @@
                     code review process, you may want to adjust this.
                 </div>
             </label>
-            <input type="number" min="1" max="10" class="freshness-threshold" value="<%= freshness_threshold %>"> <span class="days">days</span>
+            <div>
+                <input type="number" min="1" max="10" class="freshness-threshold" value="<%= freshness_threshold %>"> <span class="days">days</span>
+            </div>
         </fieldset>
         <fieldset>
             <label>
@@ -174,23 +176,23 @@
 </script>
 <script type="text/template" id="filter">
     <% var badgeSettings = model.getBadgeSettings(); %>
-    <div style="margin:0 0 10px">
-        <div style="float:left;width:35%">
-            <input style="display:block;width:95%;font-size:12px" class="name" value="<%= name %>"/>
-            <input style="display:block;width:95%;font-size:12px;font-weight:300;color:#666" class="description" value="<%= description %>"/>
-
+    <div class="filter">
+        <div class="meta">
+            <input class="name" value="<%= name %>" placeholder="Badge name..." />
+            <input class="description" value="<%= description %>" placeholder="Description..."/>
+            <div style="clear:both"></div>
             <input type="text" class="color-picker">
 
             <span title="<%= badgeSettings.title %>" class="badge <%= badgeSettings.style.text %>" style="background:<%= badgeSettings.style.background %>">
                 <%= badgeSettings.text %>
             </span>
 
-            <div class="delete" style="float:right;margin:5px 5% 0 0;color:#769AB8;font-size:12px;cursor:pointer">
-                <span class="icon-remove" style="margin-right:3px;"></span> <span style="text-decoration:underline">Delete</span>
+            <div class="delete">
+                <span class="icon-remove"></span> <span style="text-decoration:underline">Delete</span>
             </div>
         </div>
-        <div style="float:left;width:65%">
-            <div style="font-size:10px;text-transform:uppercase;padding:4px 0 6px">Conditions</div>
+        <div class="conditions">
+            <div class="heading">Conditions</div>
             <select class="property">
                 <%= properties_menu() %>
             </select>

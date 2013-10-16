@@ -211,15 +211,13 @@
 }
 #settings form fieldset {
     display:block;
-    margin:0 0 20px;
+    margin:0 0 30px;
     padding:0;
     border:none;
+    max-width:300px;
 }
 #settings form fieldset label {
-    float:left;
-    width:20%;
-    min-width:200px;
-    margin:0 20px 0 0;
+    float:none;
 }
 #settings form fieldset label .title {
     margin:9px 0 0;
@@ -227,7 +225,7 @@
 }
 #settings form fieldset label .description {
     font-size:12px;
-    margin:10px 15px 0 0;
+    margin:3px 15px 10px 0;
     color:#666;
 }
 #settings form fieldset input {
@@ -242,7 +240,6 @@
     width:60px;
 }
 #settings form fieldset select {
-    margin:8px 0 0;
     display:block;
     float:left;
 }
@@ -299,6 +296,31 @@
 #settings #filters table.filters {
     width:100%;
 }
+#settings #filters table.filters tbody {
+
+}
+#settings #filters table.filters tbody .filter {
+    margin:0 0 10px;
+}
+#settings #filters table.filters tbody .filter .meta {
+    float:left;width:35%;
+}
+#settings #filters table.filters tbody .filter .meta .delete {
+    float:right;
+    margin:6px 10% 0 0;
+    color:#769AB8;
+    font-size:10px;
+    cursor:pointer;
+}
+#settings #filters table.filters tbody .filter .meta .delete .icon-remove {
+    margin-right:2px;
+}
+#settings #filters table.filters tbody .filter .conditions {
+    float:left;width:65%
+}
+#settings #filters table.filters tbody .filter .conditions .heading {
+    color:#666;font-size:10px;text-transform:uppercase;padding:4px 0 6px;
+}
 #settings #filters table.filters input {
     float: left;
     padding: 2px 0;
@@ -309,6 +331,12 @@
     -moz-transition: border  linear .5s;
     -o-transition: border linear .5s;
     transition: border linear .5s;
+}
+#settings #filters table.filters input.name {
+    display:block;width:90%;font-size:12px;color:#3E5161;
+}
+#settings #filters table.filters input.description {
+    display:block;width:90%;font-size:12px;color:#666666;font-weight:300;
 }
 #settings #filters table.filters input:disabled {
     float: left;

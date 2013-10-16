@@ -10,23 +10,23 @@ var FiltersView = Marionette.CompositeView.extend({
 
     addFilter: function() {
         this.collection.add(new Filter({
-            name: this.randomString(4, 'YSMD')+' '+this.randomString(2, 'AP'),
-            description: 'Ready to merge',
-            bgColor: '#00ff00',
-            conditions: [
-                {
-                    property: 'hasApproval',
-                    operator: '===',
-                    value: 'true'
-                }
-            ]
+            name: 'New badge',
+            description: '',
+            bgColor: 'rgb(0, 143, 255)',
+            conditions: [{
+                property: 'hasApproval',
+                operator: '===',
+                value: 'true'
+            }]
         }));
-        console.log(this.collection)
     },
 
     randomString: function(len, charSet) {
-        charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        var randomString = '';
+        var randomString = '',
+            charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'+
+                             'abcdefghijklmnopqrstuvwxyz'+
+                             '0123456789';
+
         for (var i = 0; i < len; i++) {
             var randomPoz = Math.floor(Math.random() * charSet.length);
             randomString += charSet.substring(randomPoz,randomPoz+1);
