@@ -51,8 +51,9 @@
         <script type="text/javascript" src="/assets/js/src/views/home/HomeHeadsUpView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/home/HomeLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/common/FooterLayout.js"></script>
-        <script type="text/javascript" src="/assets/js/src/views/settings/FilterItemView.js"></script>
-        <script type="text/javascript" src="/assets/js/src/views/settings/FiltersView.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/filters/FilterItemView.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/filters/FiltersView.js"></script>
+        <script type="text/javascript" src="/assets/js/src/views/filters/FiltersLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/settings/GeneralSettingsView.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/settings/SettingsLayout.js"></script>
         <script type="text/javascript" src="/assets/js/src/views/home/CommitActivityGraphView.js"></script>

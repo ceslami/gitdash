@@ -45,16 +45,6 @@ var FilterItemView = Marionette.ItemView.extend({
                 value: this.$('.value').val()
             }]
         });
-        console.log({
-            name: this.$('.name').val(),
-            description: this.$('.description').val(),
-            bgColor: this.$('.color-picker').spectrum("get").toHexString(),
-            conditions: [{
-                property: this.$('.property').val(),
-                operator: this.$('.operator').val(),
-                value: this.$('.value').val()
-            }]
-        })
     },
 
     saveConditions: function() {
@@ -89,7 +79,9 @@ var FilterItemView = Marionette.ItemView.extend({
             confirmDelete = confirm(message);
 
         if(confirmDelete === true) {
-            this.$el.fadeOut(300, self.model.destroy);
+            this.$el.fadeOut(300, function() {
+                self.model.destroy();
+            });
         }
     },
 

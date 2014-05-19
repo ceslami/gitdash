@@ -189,15 +189,13 @@
 /* SETTINGS ******************************************************************/
 
 #settings {
-    float:left;
-    width:100%;
     overflow-y:scroll;
     font-size:14px;
     height:100%;
+    padding:0 10px;
 }
 #settings .header {
     font-size:18px;
-    font-weight:200;
     margin:0 0 12px;
     padding:0 0 12px;
     border-bottom:1px solid #e5e5e5
@@ -206,9 +204,7 @@
     float:left;
     width:50%;
 }
-#settings form {
-    margin:0 10px;
-}
+
 #settings form fieldset {
     display:block;
     margin:0 0 30px;
@@ -291,7 +287,7 @@
 }
 
 #settings #filters {
-    width:50%;float:left;
+
 }
 #settings #filters table.filters {
     width:100%;

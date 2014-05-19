@@ -12,8 +12,6 @@ var Filter = Backbone.Model.extend({
                 return eval(condition) ? memo : ++memo;
             }, 0);
 
-            console.log()
-
         return !failed;
     },
     getBadgeSettings: function() {

@@ -4,6 +4,9 @@
             <li class="active home" data-page="#" title="Home">
                 <div class="icon icon-home"></div>
             </li>
+            <li class="filters" data-page="filters" title="Filters">
+                <div class="icon icon-filter"></div>
+            </li>
             <li class="settings" data-page="settings" title="Settings">
                 <div class="icon icon-cogs"></div>
             </li>
@@ -11,11 +14,11 @@
                 <img style="width:100%" src="/assets/img/spinner.gif">
             </div>
         </ul>
-        <div style="float:left;margin:0 0 0 10px">
+        <div style="float:left;margin:0 0 0 10px;display:none">
             Last refresh: <span class="last-update"></span>
         </div>
         <div class="meta-data">
-            Have a suggestion? <a target="_blank" href="https://github.com/ceslami/gitdash/issues/new?labels=enhancement">Make a feature request</a> or <a href="https://github.com/ceslami/gitdash/">open a pull request</a>. &nbsp;&middot;&nbsp; GitDash &nbsp;&middot;&nbsp; Cyrus Eslami, 2013
+            <a href="https://github.com/ceslami/gitdash/">gitdash</a> &nbsp;&middot;&nbsp; Cyrus Eslami, 2013
         </div>
     </div>
 </script>
@@ -88,13 +91,10 @@
     <div id="settings">
         <div class="header">Settings</div>
         <div class="settings"></div>
-        <div id="filters"></div>
         <div style="clear:both"></div>
-        <div style="margin:10px">
-            <button class="save">Save Settings</button>
-            <div class="saved-successfully">
-                <span class="icon-ok"></span> Saved successfully.
-            </div>
+        <button class="save">Save Settings</button>
+        <div class="saved-successfully">
+            <span class="icon-ok"></span> Saved successfully.
         </div>
     </div>
 </script>
@@ -160,6 +160,17 @@
         </fieldset>
     </form>
 
+</script>
+<script type="text/template" id="filters">
+    <div id="settings">
+        <div class="header">Filters</div>
+        <div id="filters"></div>
+        <div style="clear:both"></div>
+        <button class="save">Save Filters</button>
+        <div class="saved-successfully">
+            <span class="icon-ok"></span> Saved successfully.
+        </div>
+    </div>
 </script>
 <script type="text/template" id="settings-filters">
     <div class="heading">

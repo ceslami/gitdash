@@ -1,7 +1,8 @@
 var Router = Backbone.Router.extend({
   routes: {
     "(/)": "home",
-    "settings(/)": "settings"
+    "settings(/)": "settings",
+    "filters(/)": "filters"
   },
 
   initialize: function() {
@@ -26,6 +27,13 @@ var Router = Backbone.Router.extend({
 
   settings: function() {
     var view = new SettingsLayout({
+      model: App.settings
+    });
+    App.content.show(view);
+  },
+
+  filters: function() {
+    var view = new FiltersLayout({
       model: App.settings
     });
     App.content.show(view);
