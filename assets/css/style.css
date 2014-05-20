@@ -24,6 +24,7 @@
     left: 10px;
     right: 10px;
 }
+
 #content .page-loading-status {
     width:128px;
     height:64px;
@@ -323,10 +324,6 @@
     border: none;
     font-size: 14px;
     border-bottom: 1px solid #ccc;
-    -webkit-transition: border  linear .5s;
-    -moz-transition: border  linear .5s;
-    -o-transition: border linear .5s;
-    transition: border linear .5s;
 }
 #settings #filters table.filters input.name {
     display:block;width:90%;font-size:12px;color:#3E5161;
