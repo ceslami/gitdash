@@ -121,22 +121,23 @@ var FilterItemView = Marionette.ItemView.extend({
         },
         value_menu: function(property) {
             var property = this.model.get('conditions')[0].property,
+                value = this.model.get('conditions')[0].value,
                 attribute = _.first(_.where(this.filter_attributes, {
                     name: property
                 }));
 
             if(!_.isUndefined(attribute) && attribute.input === 'text') {
-                return "<input class='value' style='font-size:12px;float:none' type='text' value='"+this.model.get('conditions')[0].value+"' />";
+                return '<input type="text"  value="'+value+'" />';
             } else if(!_.isUndefined(attribute) && attribute.input === 'range') {
-                return '<input type="number" style="font-size:12px;float:none" class="value" name="points" min="1" max="1000000" value="'+this.model.get('conditions')[0].value+'">';
+                return '<input type="number" min="1" max="1000000" value="'+value+'" />';
             } else if(!_.isUndefined(attribute) && attribute.input === 'date') {
-                return '<input type="date" style="font-size:12px;float:none" class="value" name="bday" value="'+this.model.get('conditions')[0].value+'">';
+                return '<input type="date" value="'+value+'" />';
             } else {
                 return _.reduce({
                     'true': 'true',
                     'false': 'false'
                 }, function(memo, el) {
-                    var isSelected = el == this.model.get('conditions')[0].value ? 'selected' : '';
+                    var isSelected = el == value ? 'selected' : '';
                     return memo += "<option "+isSelected+">"+el+"</option>";
                 }, "<select class='value'>", this)+'</select>';
             }
