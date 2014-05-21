@@ -6,7 +6,7 @@ var Router = Backbone.Router.extend({
   },
 
   initialize: function() {
-    this.bind( "route", this.change);
+    this.bind("route", this.change);
     App.footer.show(new FooterLayout());
   },
 
@@ -21,21 +21,18 @@ var Router = Backbone.Router.extend({
   },
 
   home: function(){
-    var view = new HomeLayout();
-    App.content.show(view);
+    App.content.show(new HomeLayout());
   },
 
   settings: function() {
-    var view = new SettingsLayout({
+    App.content.show(new SettingsLayout({
       model: App.settings
-    });
-    App.content.show(view);
+    }));
   },
 
   filters: function() {
-    var view = new FiltersLayout({
+    App.content.show(new FiltersLayout({
       model: App.settings
-    });
-    App.content.show(view);
+    }));
   }
 });

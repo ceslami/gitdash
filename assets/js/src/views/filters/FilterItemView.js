@@ -53,13 +53,18 @@ var FilterItemView = Marionette.ItemView.extend({
 
         if(selectedProperty != currentProperty) {
             var attribute = _.first(_.where(this.filter_attributes, {
-                name: this.$('.property').val()
-            })),
-            input_type = !_.isUndefined(attribute) ? attribute.input : null;
+                    name: this.$('.property').val()
+                })),
+                input_type = !_.isUndefined(attribute) ? attribute.input : null,
+                value;
 
-            if (input_type == 'boolean') { value = true; }
-            if (input_type == 'text')    { value = '';   }
-            else                         { value = '0';  }
+            if (input_type == 'boolean') {
+                value = true;
+            } else if (input_type == 'text') {
+                value = '';
+            } else {
+                value = '0';
+            }
 
             this.model.set({
                 conditions: [{
@@ -88,7 +93,6 @@ var FilterItemView = Marionette.ItemView.extend({
     templateHelpers: {
         properties_menu: function() {
             var pr = App.collections.pull_requests.at(0),
-                // attributes = _.keys(pr.attributes),
                 attributes = this.filter_attributes,
                 methods = _.keys(_.omit(pr.__proto__, ['constructor', '__proto__'])),
                 unique_methods = _.difference(methods, _.keys(Backbone.Model.prototype)),
