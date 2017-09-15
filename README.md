@@ -1,6 +1,6 @@
 # gitdash
 
-gitdash is a tool for teams who use Github.
+gitdash is a tool for teams that use Github.
 
 #### Getting Started
 
